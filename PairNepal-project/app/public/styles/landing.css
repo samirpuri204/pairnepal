@@ -1,0 +1,575 @@
+/* =============================================================================
+   PairNepal — brand page
+   Loaded with brand.css (tokens, type, buttons, chips, motion primitives).
+   The app shell's styles-main.css is deliberately NOT loaded here: it pins the
+   body to 100vw/flex and would fight a scrolling marketing page.
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+    min-height: 100dvh;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+img, svg { max-width: 100%; display: block; }
+
+a { color: inherit; }
+
+.pn-wrap {
+    width: min(1120px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+/* ------------------------------------------------------------------ top bar */
+/* brand.css styles the bare `header` element for the app shell; the marketing
+   top bar carries its own box, so reset it here. */
+header.pn-topbar {
+    padding: 0;
+    min-height: 0;
+}
+
+.pn-topbar {
+    position: sticky;
+    top: 0;
+    z-index: var(--pn-z-header);
+    backdrop-filter: saturate(140%) blur(10px);
+    background: color-mix(in srgb, var(--pn-canvas) 88%, transparent);
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--pn-dur-shift) var(--pn-ease-out);
+}
+
+.pn-topbar.is-stuck { border-bottom-color: var(--pn-line); }
+
+.pn-topbar__inner {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+}
+
+.pn-topbar .pn-brand { margin-right: auto; padding: 0; }
+
+.pn-nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.pn-nav a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--pn-ink-2);
+    padding: 8px 12px;
+    border-radius: var(--pn-r-sm);
+    transition: color var(--pn-dur-feedback) var(--pn-ease-out),
+                background-color var(--pn-dur-feedback) var(--pn-ease-out);
+}
+
+.pn-nav a:hover { color: var(--pn-ink); background: var(--pn-surface-2); }
+
+@media (max-width: 800px) { .pn-nav { display: none; } }
+
+/* --------------------------------------------------------------------- hero */
+.pn-hero {
+    padding: clamp(48px, 9vw, 104px) 0 clamp(40px, 7vw, 84px);
+}
+
+.pn-hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+    gap: clamp(28px, 5vw, 64px);
+    align-items: center;
+}
+
+@media (max-width: 900px) {
+    .pn-hero__grid { grid-template-columns: 1fr; }
+}
+
+.pn-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--pn-ink-3);
+    background: var(--pn-surface);
+    border: var(--pn-hairline);
+    border-radius: var(--pn-r-pill);
+    padding: 6px 13px;
+    box-shadow: var(--pn-shadow-1);
+    margin-bottom: 22px;
+}
+
+.pn-eyebrow::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--pn-ok);
+    animation: pn-presence 3.2s var(--pn-ease-out) infinite;
+}
+
+body.pn-idle .pn-eyebrow::before { animation-play-state: paused; }
+
+.pn-hero h1 {
+    font-size: clamp(38px, 6.4vw, 72px);
+    line-height: 1.02;
+    letter-spacing: -.022em;
+    margin: 0 0 20px;
+    max-width: 15ch;
+}
+
+.pn-hero h1 em {
+    font-style: italic;
+    color: var(--pn-accent);
+}
+
+.pn-lede {
+    font-size: clamp(16px, 1.6vw, 18.5px);
+    line-height: 1.65;
+    color: var(--pn-ink-2);
+    max-width: 52ch;
+    margin: 0 0 30px;
+}
+
+.pn-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+
+/* The landing page needs a real anchor/button pair, not the app's div buttons. */
+.pn-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    height: 52px;
+    padding: 0 26px;
+    border-radius: var(--pn-r-sm);
+    font-family: var(--pn-font-ui);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform var(--pn-dur-feedback) var(--pn-ease-out),
+                background-color var(--pn-dur-feedback) var(--pn-ease-out),
+                border-color var(--pn-dur-feedback) var(--pn-ease-out);
+}
+
+.pn-btn--primary {
+    background: var(--pn-accent);
+    color: #fff;
+    box-shadow: 0 12px 26px -16px color-mix(in srgb, var(--pn-accent) 90%, transparent);
+}
+
+.pn-btn--primary:hover { background: var(--pn-accent-hover); }
+
+.pn-btn--ghost {
+    background: var(--pn-surface);
+    border-color: var(--pn-line-strong);
+    color: var(--pn-ink);
+}
+
+.pn-btn--ghost:hover { background: var(--pn-surface-2); }
+
+.pn-btn:active { transform: translateY(1px) scale(.995); }
+
+.pn-btn__kbd {
+    font-family: var(--pn-font-mono);
+    font-size: 11px;
+    color: var(--pn-ink-3);
+    border: var(--pn-hairline);
+    border-radius: 6px;
+    padding: 2px 6px;
+}
+
+/* Hero visual: the ident, enlarged, on a quiet panel. */
+.pn-hero__panel {
+    position: relative;
+    border-radius: var(--pn-r-xl);
+    border: var(--pn-hairline);
+    background:
+        radial-gradient(120% 90% at 50% 0%, var(--pn-surface) 0%, var(--pn-canvas) 72%);
+    padding: 30px 24px 40px;
+    box-shadow: var(--pn-shadow-2);
+    overflow: hidden;
+}
+
+.pn-hero__panel .pn-ident { --pn-ident-size: clamp(220px, 30vw, 320px); margin-bottom: 8px; }
+
+.pn-hero__meta {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+/* The hero meta chips are marketing copy. Upstream's `.badge-room-*` hues
+   (--pn-blue / --pn-ok / --pn-warn) exist to report *room state* inside the
+   app, and reusing them here put three unrelated status colours — blue, green,
+   amber — into a marketing hero that is otherwise a one-accent system. These
+   are now neutral brand pills with a single accent dot, so they sit on the same
+   palette as the rest of the page in both light and dark. Scoped to
+   .pn-hero__meta, which only exists on the marketing pages, so the app's real
+   status badges are untouched. */
+.pn-hero__meta .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--pn-surface);
+    color: var(--pn-ink-2);
+    border-color: var(--pn-line);
+    box-shadow: var(--pn-shadow-1);
+}
+
+.pn-hero__meta .badge::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--pn-accent);
+}
+
+/* --------------------------------------------------------------- sections */
+.pn-section { padding: clamp(48px, 7vw, 92px) 0; }
+.pn-section + .pn-section { border-top: 1px solid var(--pn-line); }
+
+.pn-section__head { max-width: 62ch; margin-bottom: clamp(28px, 4vw, 48px); }
+
+.pn-section h2 {
+    font-size: clamp(28px, 3.6vw, 42px);
+    line-height: 1.1;
+    letter-spacing: -.018em;
+    margin: 0 0 14px;
+}
+
+.pn-section__head p {
+    font-size: 16.5px;
+    line-height: 1.68;
+    color: var(--pn-ink-2);
+    margin: 0;
+}
+
+.pn-kicker {
+    font-family: var(--pn-font-mono);
+    font-size: 11.5px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--pn-ink-3);
+    margin: 0 0 14px;
+}
+
+/* Feature cards: a real grid, one accent, no decorative gradients. */
+.pn-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+    gap: 18px;
+}
+
+.pn-card {
+    background: var(--pn-surface);
+    border: var(--pn-hairline);
+    border-radius: var(--pn-r-lg);
+    padding: 26px 24px;
+    box-shadow: var(--pn-shadow-1);
+    transition: transform var(--pn-dur-shift) var(--pn-ease-out),
+                box-shadow var(--pn-dur-shift) var(--pn-ease-out),
+                border-color var(--pn-dur-shift) var(--pn-ease-out);
+}
+
+.pn-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--pn-shadow-2);
+    border-color: var(--pn-line-strong);
+}
+
+.pn-card__icon {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--pn-r-sm);
+    display: grid;
+    place-items: center;
+    background: var(--pn-accent-soft);
+    color: var(--pn-accent);
+    margin-bottom: 16px;
+}
+
+.pn-card__icon svg { width: 21px; height: 21px; }
+
+.pn-card h3 {
+    font-family: var(--pn-font-ui);
+    font-size: 16.5px;
+    font-weight: 650;
+    letter-spacing: -.005em;
+    margin: 0 0 8px;
+}
+
+.pn-card p {
+    font-size: 14.5px;
+    line-height: 1.62;
+    color: var(--pn-ink-2);
+    margin: 0;
+}
+
+.pn-card--wide { grid-column: span 2; }
+@media (max-width: 640px) { .pn-card--wide { grid-column: span 1; } }
+
+/* ---------------------------------------------------------------- steps */
+.pn-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 26px;
+    counter-reset: step;
+}
+
+.pn-step { position: relative; padding-top: 42px; }
+
+.pn-step::before {
+    counter-increment: step;
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: var(--pn-font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    color: var(--pn-accent);
+}
+
+.pn-step::after {
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: 34px;
+    right: 0;
+    height: 1px;
+    background: var(--pn-line);
+}
+
+.pn-step h3 {
+    font-family: var(--pn-font-ui);
+    font-size: 15.5px;
+    font-weight: 650;
+    margin: 0 0 7px;
+}
+
+.pn-step p { font-size: 14.5px; line-height: 1.6; color: var(--pn-ink-2); margin: 0; }
+
+/* -------------------------------------------------------- sound design kit */
+.pn-soundkit {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 12px;
+    margin-top: 26px;
+}
+
+.pn-cue {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--pn-surface);
+    border: var(--pn-hairline);
+    border-radius: var(--pn-r-md);
+    padding: 14px 16px;
+    text-align: left;
+    cursor: pointer;
+    font-family: var(--pn-font-ui);
+    font-size: 14px;
+    color: var(--pn-ink);
+    transition: transform var(--pn-dur-feedback) var(--pn-ease-out),
+                border-color var(--pn-dur-feedback) var(--pn-ease-out),
+                background-color var(--pn-dur-feedback) var(--pn-ease-out);
+}
+
+.pn-cue:hover { border-color: var(--pn-line-strong); background: var(--pn-surface-2); }
+.pn-cue:active { transform: scale(.985); }
+
+.pn-cue__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--pn-accent);
+    flex: none;
+    opacity: .35;
+}
+
+.pn-cue.is-live .pn-cue__dot { opacity: 1; animation: pn-presence 1s var(--pn-ease-out) 2; }
+
+.pn-cue__meta {
+    display: block;
+    font-family: var(--pn-font-mono);
+    font-size: 10.5px;
+    color: var(--pn-ink-3);
+    margin-top: 2px;
+}
+
+.pn-note {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: var(--pn-surface-2);
+    border: var(--pn-hairline);
+    border-radius: var(--pn-r-md);
+    padding: 16px 18px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--pn-ink-2);
+    margin-top: 22px;
+}
+
+.pn-note svg { width: 18px; height: 18px; flex: none; margin-top: 2px; color: var(--pn-ink-3); }
+
+/* ------------------------------------------------------------------ movie */
+.pn-movie {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
+    gap: 32px;
+    align-items: center;
+    background: var(--pn-surface);
+    border: var(--pn-hairline);
+    border-radius: var(--pn-r-xl);
+    padding: clamp(24px, 4vw, 40px);
+    box-shadow: var(--pn-shadow-1);
+}
+
+@media (max-width: 860px) { .pn-movie { grid-template-columns: 1fr; } }
+
+.pn-movie__stage {
+    border-radius: var(--pn-r-lg);
+    border: var(--pn-hairline);
+    background: radial-gradient(120% 100% at 50% 0%, var(--pn-canvas), var(--pn-surface-2));
+    padding: 22px 14px 34px;
+    display: grid;
+    place-items: center;
+    min-height: 240px;
+}
+
+.pn-movie__stage .pn-ident { --pn-ident-size: clamp(200px, 34vw, 300px); margin-bottom: 0; }
+
+
+
+.pn-movie h3 {
+    font-family: var(--pn-font-display);
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: -.015em;
+    margin: 0 0 12px;
+}
+
+.pn-movie p { font-size: 15px; line-height: 1.66; color: var(--pn-ink-2); margin: 0 0 18px; }
+
+.pn-spec {
+    list-style: none;
+    margin: 0 0 20px;
+    padding: 0;
+    font-family: var(--pn-font-mono);
+    font-size: 12.5px;
+    color: var(--pn-ink-2);
+}
+
+.pn-spec li {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--pn-line);
+}
+
+.pn-spec li:last-child { border-bottom: 0; }
+.pn-spec b { font-weight: 600; color: var(--pn-ink); font-variant-numeric: tabular-nums; }
+
+/* ------------------------------------------------------------------- faq */
+.pn-faq { display: grid; gap: 0; border-top: 1px solid var(--pn-line); }
+
+.pn-faq details {
+    border-bottom: 1px solid var(--pn-line);
+    padding: 6px 0;
+}
+
+.pn-faq summary {
+    cursor: pointer;
+    list-style: none;
+    font-size: 16.5px;
+    font-weight: 550;
+    padding: 16px 40px 16px 0;
+    position: relative;
+    color: var(--pn-ink);
+}
+
+.pn-faq summary::-webkit-details-marker { display: none; }
+
+.pn-faq summary::after {
+    content: "";
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    width: 9px;
+    height: 9px;
+    border-right: 1.6px solid var(--pn-ink-3);
+    border-bottom: 1.6px solid var(--pn-ink-3);
+    transform: translateY(-70%) rotate(45deg);
+    transition: transform var(--pn-dur-feedback) var(--pn-ease-out);
+}
+
+.pn-faq details[open] summary::after { transform: translateY(-30%) rotate(-135deg); }
+
+.pn-faq p {
+    margin: 0 0 18px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--pn-ink-2);
+    max-width: 72ch;
+}
+
+/* ----------------------------------------------------------------- footer */
+.pn-footer {
+    border-top: 1px solid var(--pn-line);
+    padding: 44px 0 56px;
+    margin-top: clamp(40px, 6vw, 80px);
+}
+
+.pn-footer__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.pn-footer p {
+    font-size: 13.5px;
+    line-height: 1.66;
+    color: var(--pn-ink-3);
+    max-width: 40ch;
+    margin: 12px 0 0;
+}
+
+.pn-footer nav { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+
+.pn-footer nav a {
+    font-size: 13.5px;
+    color: var(--pn-ink-2);
+    text-decoration: none;
+    border-bottom: 1px solid var(--pn-line-strong);
+    padding-bottom: 2px;
+}
+
+.pn-footer nav a:hover { color: var(--pn-accent); border-bottom-color: var(--pn-accent); }
+
+@media (prefers-reduced-motion: reduce) {
+    .pn-card:hover { transform: none; }
+    .pn-eyebrow::before { animation: none; opacity: .8; }
+}

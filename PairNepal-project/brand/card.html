@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;width:1200px;height:630px;overflow:hidden}
+  body{
+    font-family:'Instrument Sans',system-ui,sans-serif;
+    background:#f7f8fa;color:#101828;position:relative;
+  }
+  .rule{position:absolute;left:0;top:0;width:12px;height:630px;background:#c11235}
+  .glow{position:absolute;right:-140px;top:-160px;width:640px;height:640px;border-radius:50%;
+        border:1px solid rgba(193,18,53,.13);}
+  .glow.b{right:-40px;top:-60px;width:440px;height:440px;border-color:rgba(193,18,53,.09)}
+  .glow.c{right:60px;top:40px;width:240px;height:240px;border-color:rgba(193,18,53,.07)}
+  .wrap{position:absolute;left:92px;top:88px;right:92px}
+  .lock{display:flex;align-items:center;gap:18px}
+  .mark{width:88px;height:88px;color:#c11235;flex:none}
+  .name{font-family:'Instrument Serif',Georgia,serif;font-size:60px;line-height:1;
+        letter-spacing:-.015em;color:#101828}
+  h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;
+     font-size:74px;line-height:1.06;letter-spacing:-.02em;margin:44px 0 0;max-width:14ch}
+  h1 em{font-style:italic;color:#c11235}
+  p{font-size:25px;line-height:1.45;color:#475467;margin:22px 0 0;max-width:48ch}
+  .mono{font-family:'JetBrains Mono',monospace;font-size:16px;letter-spacing:.16em;
+        text-transform:uppercase;color:#8896ab;position:absolute;left:92px;bottom:74px}
+  .credit{font-family:'JetBrains Mono',monospace;font-size:15px;letter-spacing:.06em;
+          color:#8896ab;position:absolute;right:92px;bottom:74px}
+</style></head>
+<body>
+  <div class="rule"></div><div class="glow"></div><div class="glow b"></div><div class="glow c"></div>
+  <div class="wrap">
+    <div class="lock">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PairNepal"><rect x="2.8" y="4.6" width="7.6" height="16.4" rx="2.6" transform="rotate(22.0 6.6 12.8)"/><rect x="13.6" y="4.6" width="7.6" height="16.4" rx="2.6" transform="rotate(-22.0 17.4 12.8)"/></svg></span>
+      <span class="name">PairNepal</span>
+    </div>
+    <h1>Send files between <em>every screen</em> you own</h1>
+    <p>Peer to peer, in the browser. No signup, no cables, no upload limit.</p>
+  </div>
+  <div class="mono">pairnepal.bond</div>
+  <div class="credit">built by Samir Puri</div>
+</body></html>

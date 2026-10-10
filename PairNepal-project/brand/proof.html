@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PairNepal mark proof</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  :root{
+    --crimson:#c11235; --crimson-deep:#a30e2c;
+    --ink:#101828; --ink2:#475467; --ink3:#8896ab;
+    --canvas:#f7f8fa; --surface:#fff; --dark:#0b0d12; --darksurf:#141821;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Instrument Sans',system-ui,sans-serif;background:var(--canvas);color:var(--ink)}
+  .sheet{padding:34px 38px 46px}
+  h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:30px;margin:0 0 4px}
+  .sub{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:26px}
+  .label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin:0 0 12px}
+  .row{display:flex;align-items:flex-end;gap:26px;padding:20px 22px;border-radius:14px;background:var(--surface);border:1px solid #e7eaf0;margin-bottom:18px}
+  .row.dark{background:var(--dark);border-color:#232a37}
+  .row.dark .label{color:#7b8798}
+  .cell{display:flex;flex-direction:column;align-items:center;gap:9px}
+  .cell .px{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink3)}
+  .row.dark .cell .px{color:#7b8798}
+  .mk{color:var(--crimson);display:block}
+  .mk.w{color:#fff}
+  .tile{display:grid;place-items:center;background:var(--crimson);border-radius:22%}
+  .lock{display:flex;align-items:center;gap:14px}
+  .lock .word{font-family:'Instrument Serif',Georgia,serif;font-size:40px;line-height:1;letter-spacing:-.01em}
+  .lock .tag{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin-top:5px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .tilewrap{display:flex;gap:16px;align-items:center}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <h1>PairNepal — mark exploration</h1>
+  <div class="sub">single colour · no knockout · legible to 16px</div>
+
+  <p class="label">Mark — light surface (accent)</p>
+  <div class="row" id="r1"></div>
+
+  <p class="label">Mark — dark surface (accent + white)</p>
+  <div class="row dark" id="r2"></div>
+
+  <p class="label">App tile + lockup</p>
+  <div class="grid2">
+    <div class="row" style="margin:0">
+      <div class="tilewrap" id="tiles"></div>
+    </div>
+    <div class="row" style="margin:0">
+      <div class="lock">
+        <span class="mk" style="--s:44px" id="lockmark"></span>
+        <span>
+          <div class="word">PairNepal</div>
+          <div class="tag">Send files, instantly</div>
+        </span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<template id="mark">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M0.9 20.1 H13.3 L7.05 5.5 Z" fill="currentColor"/>
+    <path d="M10.7 20.1 H23.1 L17.35 8.9 Z" fill="currentColor"/>
+    <circle cx="12.2" cy="13.4" r="1.8" fill="currentColor"/>
+  </svg>
+</template>
+
+<script>
+const tpl = document.getElementById('mark').innerHTML;
+function mark(size, cls){
+  const w = document.createElement('span');
+  w.className = 'cell';
+  const holder = document.createElement('span');
+  holder.className = 'mk ' + (cls||'');
+  holder.style.width = size+'px'; holder.style.height = size+'px';
+  holder.innerHTML = tpl;
+  holder.querySelector('svg').setAttribute('width', size);
+  holder.querySelector('svg').setAttribute('height', size);
+  const px = document.createElement('span'); px.className='px'; px.textContent = size+'px';
+  w.append(holder, px);
+  return w;
+}
+const sizes = [16,20,24,32,48,64,96,144];
+for (const s of sizes) document.getElementById('r1').append(mark(s));
+for (const s of sizes) document.getElementById('r2').append(mark(s, s>=48 ? 'w' : ''));
+
+const tileSizes = [180,120,64,32,16];
+for (const s of tileSizes){
+  const t = document.createElement('span');
+  t.className='cell';
+  const tile = document.createElement('span');
+  tile.className='tile'; tile.style.width=s+'px'; tile.style.height=s+'px';
+  const inner = Math.round(s*0.56);
+  tile.innerHTML = tpl;
+  const svg = tile.querySelector('svg');
+  svg.setAttribute('width', inner); svg.setAttribute('height', inner);
+  svg.style.color = '#fff';
+  const px=document.createElement('span'); px.className='px'; px.textContent=s+'px';
+  t.append(tile,px);
+  document.getElementById('tiles').append(t);
+}
+const lm = document.getElementById('lockmark');
+lm.style.width='44px'; lm.style.height='44px'; lm.innerHTML = tpl;
+</script>
+</body>
+</html>

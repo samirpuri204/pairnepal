@@ -1,0 +1,19 @@
+# dependencies
+node_modules/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# logs
+*.log
+npm-debug.log*
+
+# local env
+.env
+.env.local
+
+# editor
+.vscode/
+.idea/

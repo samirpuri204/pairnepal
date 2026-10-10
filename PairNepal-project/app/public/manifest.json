@@ -1,0 +1,70 @@
+{
+    "name": "PairNepal — send files between your devices",
+    "short_name": "PairNepal",
+    "id": "/",
+    "scope": "/",
+    "categories": ["utilities", "productivity", "business"],
+    "dir": "ltr",
+    "icons": [
+        {
+            "src": "images/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "images/favicon-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "images/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "images/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "images/android-chrome-192x192-maskable.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "images/android-chrome-512x512-maskable.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ],
+    "background_color": "#f7f8fa",
+    "start_url": "./",
+    "display": "standalone",
+    "theme_color": "#c11235",
+    "share_target": {
+        "action": "/",
+        "method": "POST",
+        "enctype": "multipart/form-data",
+        "params": {
+            "title": "title",
+            "text": "text",
+            "url": "url",
+            "files": [
+                {
+                    "name": "allfiles",
+                    "accept": [
+                        "*/*"
+                    ]
+                }
+            ]
+        }
+    },
+    "launch_handler": {
+        "client_mode": "focus-existing"
+    },
+    "description": "Send files between your devices instantly. No signup, no cables.",
+    "lang": "en"
+}

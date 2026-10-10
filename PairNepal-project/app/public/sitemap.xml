@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://pairnepal.bond/</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://pairnepal.bond/images/pairnepal-social.png</image:loc>
+      <image:title>PairNepal — send files between your devices</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://pairnepal.bond/how-it-works</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://pairnepal.bond/images/pairnepal-social.png</image:loc>
+      <image:title>How PairNepal works</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://pairnepal.bond/faq</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://pairnepal.bond/images/pairnepal-social.png</image:loc>
+      <image:title>PairNepal FAQ — file size limits, Wi-Fi, privacy and troubleshooting</image:title>
+    </image:image>
+  </url>
+
+</urlset>

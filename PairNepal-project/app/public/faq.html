@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PairNepal FAQ — File Size Limits, Privacy &amp; Troubleshooting</title>
+    <meta name="description" content="The questions people ask first about PairNepal: the real file size limit, Wi-Fi or rooms, where files go, and what to do when a device will not show up.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://pairnepal.bond/faq">
+    <link rel="alternate" hreflang="en" href="https://pairnepal.bond/faq">
+    <link rel="alternate" hreflang="x-default" href="https://pairnepal.bond/faq">
+    <meta name="author" content="Samir Puri">
+    <link rel="author" href="https://samirpuri.com.np">
+
+    <meta name="theme-color" content="#f7f8fa" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b0d12" media="(prefers-color-scheme: dark)">
+    <meta name="color-scheme" content="light dark">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="icon" href="images/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PairNepal">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://pairnepal.bond/faq">
+    <meta property="og:title" content="PairNepal FAQ — Everything people ask first">
+    <meta property="og:description" content="File size limits, Wi-Fi vs. rooms, where your files actually go, and how to fix a device that will not show up.">
+    <meta property="og:image" content="https://pairnepal.bond/images/pairnepal-social.png">
+    <meta property="og:image:secure_url" content="https://pairnepal.bond/images/pairnepal-social.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="PairNepal — send files between every screen you own">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PairNepal FAQ — Everything people ask first">
+    <meta name="twitter:description" content="File size limits, Wi-Fi vs. rooms, where your files actually go, and how to fix a device that will not show up.">
+    <meta name="twitter:image" content="https://pairnepal.bond/images/pairnepal-social.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap">
+
+    <link rel="stylesheet" href="styles/brand.css">
+    <link rel="stylesheet" href="styles/landing.css">
+
+    <style>
+        /* FAQ page only. Everything else comes from brand.css + landing.css. */
+        .pn-faq-page { padding: clamp(40px, 7vw, 76px) 0 clamp(48px, 7vw, 88px); }
+
+        .pn-faq-head { max-width: 66ch; margin-bottom: clamp(28px, 4vw, 44px); }
+        .pn-faq-head h1 {
+            font-size: clamp(34px, 5.2vw, 60px);
+            line-height: 1.04;
+            letter-spacing: -.022em;
+            margin: 0 0 18px;
+        }
+        .pn-faq-head h1 em { font-style: italic; color: var(--pn-accent); }
+        .pn-faq-head p { font-size: 17px; line-height: 1.66; color: var(--pn-ink-2); margin: 0; }
+
+        .pn-jump {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 26px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+        .pn-jump a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 550;
+            text-decoration: none;
+            color: var(--pn-ink-2);
+            background: var(--pn-surface);
+            border: var(--pn-hairline);
+            border-radius: var(--pn-r-pill);
+            padding: 7px 14px;
+            box-shadow: var(--pn-shadow-1);
+            transition: color var(--pn-dur-feedback) var(--pn-ease-out),
+                        border-color var(--pn-dur-feedback) var(--pn-ease-out);
+        }
+        .pn-jump a:hover { color: var(--pn-accent); border-color: var(--pn-line-strong); }
+
+        .pn-faq-group { scroll-margin-top: 90px; }
+        .pn-faq-group + .pn-faq-group { margin-top: clamp(38px, 5vw, 64px); }
+
+        .pn-faq-group__title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--pn-font-mono);
+            font-size: 11.5px;
+            font-weight: 600;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--pn-ink-3);
+            margin: 0 0 6px;
+        }
+        .pn-faq-group__title::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--pn-line);
+        }
+
+        .pn-faq--loose { border-top: 0; }
+        .pn-faq--loose details:first-of-type { border-top: 1px solid var(--pn-line); }
+
+        .pn-faq code {
+            font-size: .92em;
+            background: var(--pn-surface-2);
+            border: var(--pn-hairline);
+            border-radius: 6px;
+            padding: 1px 6px;
+        }
+
+        .pn-cta-band {
+            margin-top: clamp(40px, 6vw, 68px);
+            background: var(--pn-surface);
+            border: var(--pn-hairline);
+            border-radius: var(--pn-r-xl);
+            padding: clamp(26px, 4vw, 40px);
+            box-shadow: var(--pn-shadow-1);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .pn-cta-band h2 {
+            font-size: clamp(24px, 3.2vw, 34px);
+            line-height: 1.12;
+            margin: 0 0 8px;
+        }
+        .pn-cta-band p { font-size: 15px; line-height: 1.6; color: var(--pn-ink-2); margin: 0; max-width: 46ch; }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "FAQPage",
+          "@id": "https://pairnepal.bond/faq#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is PairNepal?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "PairNepal is a free browser tool that sends files directly from one device to another — phone to laptop, Mac to Windows, Android to iPhone. Both devices open the same web page, they find each other, and the file moves between them. There is no account, no app to install and no cable."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is there a file size limit?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No upload cap. Because the file travels directly between the two devices instead of being uploaded to a server, the only limits are your browser and your free disk space. A 4 GB video transfers fine on a local network."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do both devices need to be on the same Wi-Fi?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. The same network is the fastest and simplest path, and devices on it appear automatically. If the two devices are on different networks, pair them once with a six-digit code, or join a temporary five-letter public room, and the transfer still works."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Where do my files actually go?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Straight to the other device. PairNepal's server only introduces the two devices to each other and then steps out of the way — the file data never passes through it and is never stored on it."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is PairNepal private and secure?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The transfer is a direct peer-to-peer connection over WebRTC, which is encrypted in transit, and nobody else receives the file. PairNepal cannot read your files because they do not travel through PairNepal's servers. Rooms and pair codes are temporary and can be left at any time."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do I need to install anything or create an account?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. PairNepal runs entirely in the browser. You can optionally add it to your home screen so it opens like an app, but nothing has to be installed and no signup is required."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Which devices and browsers does it work on?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Any device with a modern browser: Android and iPhone, Windows, macOS and Linux, Chrome, Safari, Firefox and Edge. If it can open a web page, it can send and receive."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is PairNepal free?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, it is free to use, with no account, no subscription and no per-transfer charge."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why can I not see the other device?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Check that both devices are on the same Wi-Fi network and that neither is on a VPN or a guest network that blocks device-to-device traffic. Some routers and public networks isolate clients from each other. If they are on different networks, use a pair code or join the same public room instead."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why is the transfer slow?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Speed follows the weakest link: an older phone, a 2.4 GHz Wi-Fi band, or a network with client isolation. On a good local network transfers typically run at tens of megabytes per second. Moving the two devices closer to the router usually helps."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why does PairNepal make sounds?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A transfer has no visible feedback until it finishes, so sound reports what is happening — a device appearing, a file sent, a transfer complete. Sound is off by default and you turn it on when you want it; the choice is remembered on your device."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I receive multiple files?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Send as many as you like at once. Multiple files arrive as a single zip so they land together, and progress is shown per file. Images and videos keep their original quality — bytes are copied, never re-encoded."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Who made PairNepal?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "PairNepal was designed and built by Samir Puri (samirpuri.com.np), a developer based in Nepal. Contact: Developer@samirpuri.com.np."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://pairnepal.bond/faq#webpage",
+          "url": "https://pairnepal.bond/faq",
+          "name": "PairNepal FAQ — File Size Limits, Wi-Fi, Privacy & Troubleshooting",
+          "alternateName": ["Pair Nepal FAQ", "pair nepal help", "pairnepal questions", "PairNepal help"],
+          "inLanguage": "en",
+          "isPartOf": { "@id": "https://pairnepal.bond/#website" },
+          "about": { "@id": "https://pairnepal.bond/#app" },
+          "primaryImageOfPage": "https://pairnepal.bond/images/pairnepal-social.png",
+          "author": { "@id": "https://pairnepal.bond/#developer" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "PairNepal",
+              "item": "https://pairnepal.bond/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "How it works",
+              "item": "https://pairnepal.bond/how-it-works"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "FAQ",
+              "item": "https://pairnepal.bond/faq"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+</head>
+
+<body>
+
+    <header class="pn-topbar">
+        <div class="pn-wrap pn-topbar__inner">
+            <a class="pn-brand" href="/how-it-works" aria-label="PairNepal home">
+                <span class="pn-brand__mark">
+                    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.8" y="4.6" width="7.6" height="16.4" rx="2.6" transform="rotate(22 6.6 12.8)"/><rect x="13.6" y="4.6" width="7.6" height="16.4" rx="2.6" transform="rotate(-22 17.4 12.8)"/></svg>
+                </span>
+                <span class="pn-brand__text">
+                    <span class="pn-brand__name">PairNepal</span>
+                    <span class="pn-brand__tag">Send files, instantly</span>
+                </span>
+            </a>
+
+            <nav class="pn-nav" aria-label="Sections">
+                <a href="/how-it-works#how">How it works</a>
+                <a href="/how-it-works#why">Why it's different</a>
+                <a href="/faq" aria-current="page">FAQ</a>
+                <a href="/">Open the app</a>
+            </nav>
+
+            <span id="pn-sound-slot"></span>
+
+            <a class="pn-btn pn-btn--primary" style="height:40px;padding:0 18px;font-size:14px" href="/">Open the app</a>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="pn-faq-page">
+            <div class="pn-wrap">
+
+                <div class="pn-faq-head">
+                    <p class="pn-kicker">Questions</p>
+                    <h1>PairNepal FAQ — <em>the things people ask first</em></h1>
+                    <p>
+                        PairNepal is also written as Pair Nepal, pair nepal or pairnepal — it is the same
+                        tool. Below are the answers people look for before their first transfer: what the
+                        size limit really is, whether both devices need the same Wi-Fi, where your files
+                        actually go, and what to do when a device will not show up.
+                    </p>
+
+                    <ul class="pn-jump">
+                        <li><a href="#basics">Basics</a></li>
+                        <li><a href="#sending">Sending &amp; receiving</a></li>
+                        <li><a href="#privacy">Privacy &amp; security</a></li>
+                        <li><a href="#trouble">Troubleshooting</a></li>
+                        <li><a href="#about">About PairNepal</a></li>
+                    </ul>
+                </div>
+
+                <!-- ===================================================== basics -->
+                <section class="pn-faq-group" id="basics" aria-labelledby="basics-title">
+                    <h2 class="pn-faq-group__title" id="basics-title">Basics</h2>
+                    <div class="pn-faq pn-faq--loose" data-pn-reveal data-pn-reveal-children>
+                        <details open>
+                            <summary>What is PairNepal?</summary>
+                            <p>
+                                A free browser tool that sends files directly from one device to another —
+                                phone to laptop, Mac to Windows, Android to iPhone. Both devices open the
+                                same web page, they find each other, and the file moves between them. No
+                                account, no app to install, no cable.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>Do I need to install anything or create an account?</summary>
+                            <p>
+                                No. PairNepal runs entirely in the browser. You can optionally add it to your
+                                home screen so it opens like an app, but nothing has to be installed and
+                                there is no signup.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>Which devices and browsers does it work on?</summary>
+                            <p>
+                                Any device with a modern browser: Android and iPhone, Windows, macOS and
+                                Linux, in Chrome, Safari, Firefox and Edge. If it can open a web page, it can
+                                send and receive. That includes the awkward direction — Android to iPhone,
+                                or Windows to Mac — that normally needs a cable or a cloud drive.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>Is PairNepal free?</summary>
+                            <p>
+                                Yes. Free to use, with no account, no subscription and no per-transfer
+                                charge.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>How is this different from a cloud drive or a messaging app?</summary>
+                            <p>
+                                Messaging apps recompress photos and cap video length. Cloud drives need an
+                                account and push your file through someone else's disk before the other
+                                person can download it. PairNepal copies the bytes straight across, so a
+                                48 MP photo arrives as the 48 MP photo, and a 4 GB video is not a problem.
+                            </p>
+                        </details>
+                    </div>
+                </section>
+
+                <!-- ============================================ sending/receiving -->
+                <section class="pn-faq-group" id="sending" aria-labelledby="sending-title">
+                    <h2 class="pn-faq-group__title" id="sending-title">Sending &amp; receiving</h2>
+                    <div class="pn-faq pn-faq--loose" data-pn-reveal data-pn-reveal-children>
+                        <details open>
+                            <summary>Is there a file size limit?</summary>
+                            <p>
+                                No upload cap. Because the file travels directly between the two devices
+                                instead of being uploaded to a server, the only limits are your browser and
+                                your free disk space. A 4 GB video transfers fine on a local network.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>Do both devices need to be on the same Wi-Fi?</summary>
+                            <p>
+                                No. The same network is the fastest and simplest path, and devices on it
+                                appear automatically. If the two devices are on different networks, pair them
+                                once with a six-digit code, or join a temporary five-letter public room, and
+                                the transfer still works.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>How do I pair two devices on different networks?</summary>
+                            <p>
+                                Open the pair-device option on one device to get a six-digit code, then enter
+                                that code on the other. The two devices are linked, so from then on they see
+                                each other whenever both are online — useful for a phone on mobile data and a
+                                laptop at home. You can unpair from the same panel at any time.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>What is a public room?</summary>
+                            <p>
+                                A temporary five-letter room that several devices can join at once, so you do
+                                not have to pair them one by one. Anyone with the room link or code can join
+                                while it is open, so treat it like a shared folder: use it for a quick
+                                hand-off, not for anything private. Leaving the room removes you from it.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>How do I receive multiple files?</summary>
+                            <p>
+                                Send as many as you like at once. Multiple files arrive as a single zip so they
+                                land together, and progress is shown per file. Images and videos keep their
+                                original quality — bytes are copied, never re-encoded.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>Can I send text instead of a file?</summary>
+                            <p>
+                                Yes. There is a built-in text message option, which is convenient for a link,
+                                a password or an address that is painful to retype on a phone.
+                            </p>
+                        </details>
+                    </div>
+                </section>
+
+                <!-- ============================================ privacy/security -->
+                <section class="pn-faq-group" id="privacy" aria-labelledby="privacy-title">
+                    <h2 class="pn-faq-group__title" id="privacy-title">Privacy &amp; security</h2>
+                    <div class="pn-faq pn-faq--loose" data-pn-reveal data-pn-reveal-children>
+                        <details open>
+                            <summary>Where do my files actually go?</summary>
+                            <p>
+                                Straight to the other device. PairNepal's server only introduces the two
+                                devices to each other and then steps out of the way — the file data never
+                                passes through it and is never stored on it.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>Is the transfer encrypted?</summary>
+                            <p>
+                                The connection is a direct peer-to-peer WebRTC data channel, which is
+                                encrypted in transit, and only the receiving device gets the file. PairNepal
+                                cannot read your files, because they do not travel through PairNepal's
+                                servers.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>Do you keep my files or my device name?</summary>
+                            <p>
+                                No files are stored. The display name you see is generated on your device so
+                                you can recognise it; you can edit or replace it, and it is only used so the
+                                other side knows who is sending. Nothing about a transfer is kept after the
+                                session ends.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>Who can see that my device is online?</summary>
+                            <p>
+                                Only devices on the same local network, or devices that joined the same room
+                                or were paired with you. PairNepal does not publish a directory of users, and
+                                a device is discoverable only while the page is open.
+                            </p>
+                        </details>
+                    </div>
+                </section>
+
+                <!-- ================================================= trouble -->
+                <section class="pn-faq-group" id="trouble" aria-labelledby="trouble-title">
+                    <h2 class="pn-faq-group__title" id="trouble-title">Troubleshooting</h2>
+                    <div class="pn-faq pn-faq--loose" data-pn-reveal data-pn-reveal-children>
+                        <details open>
+                            <summary>Why can I not see the other device?</summary>
+                            <p>
+                                Check that both devices are on the same Wi-Fi network and that neither is on a
+                                VPN. Some routers, and most public and guest networks, isolate clients from
+                                each other so they cannot talk directly. If that is the case, or the devices
+                                are simply in different places, use a pair code or join the same public room
+                                instead — both work across networks.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>Why is the transfer slow?</summary>
+                            <p>
+                                Speed follows the weakest link: an older phone, the 2.4 GHz Wi-Fi band, or a
+                                congested network. On a good local network transfers typically run at tens of
+                                megabytes per second. Moving both devices closer to the router, or off a
+                                guest network, is usually the fastest fix.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>The transfer stopped halfway. What now?</summary>
+                            <p>
+                                Keep both tabs open until the transfer finishes — a sleeping phone or a
+                                backgrounded browser tab can pause the connection. Reopen the receiving tab
+                                and send again; nothing is left half-written on the other side, and the file
+                                is not corrupted if the transfer is restarted.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>Why does PairNepal make sounds?</summary>
+                            <p>
+                                A transfer has no visible feedback until it finishes, so sound reports what is
+                                happening — a device appearing, a file sent, a transfer complete. Sound is off
+                                by default and you turn it on when you want it; the choice is remembered on
+                                your device.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>Can I use it offline?</summary>
+                            <p>
+                                Opening the page needs an internet connection once. After that a transfer
+                                between two devices on the same local network works because the data goes
+                                directly between them — but both devices still need the page loaded, and the
+                                first visit has to reach the site.
+                            </p>
+                        </details>
+                    </div>
+                </section>
+
+                <!-- ==================================================== about -->
+                <section class="pn-faq-group" id="about" aria-labelledby="about-title">
+                    <h2 class="pn-faq-group__title" id="about-title">About PairNepal</h2>
+                    <div class="pn-faq pn-faq--loose" data-pn-reveal data-pn-reveal-children>
+                        <details open>
+                            <summary>Who made PairNepal?</summary>
+                            <p>
+                                PairNepal was designed and built by
+                                <a href="https://samirpuri.com.np" target="_blank" rel="noreferrer noopener">Samir Puri</a>,
+                                a developer based in Nepal. The brand, the interface and the sound design are
+                                original work. You can reach him at
+                                <a href="mailto:Developer@samirpuri.com.np">Developer@samirpuri.com.np</a>.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>Is there a version I can read in one page?</summary>
+                            <p>
+                                Yes — <a href="/how-it-works">how PairNepal works, step by step</a> walks through
+                                the whole flow with the brand story, or just
+                                <a href="/">open the app</a> and send something.
+                            </p>
+                        </details>
+                    </div>
+                </section>
+
+                <div class="pn-cta-band" data-pn-reveal>
+                    <div>
+                        <h2>Still stuck?</h2>
+                        <p>
+                            Open the app on both devices — they usually find each other the moment both pages
+                            are open on the same network.
+                        </p>
+                    </div>
+                    <div class="pn-cta-row">
+                        <span data-pn-magnetic="0.5" data-pn-range="140">
+                            <a class="pn-btn pn-btn--primary" href="/">
+                                Open PairNepal
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M5 12h14M13 6l6 6-6 6"/>
+                                </svg>
+                            </a>
+                        </span>
+                        <a class="pn-btn pn-btn--ghost" href="/how-it-works">How it works</a>
+                    </div>
+                </div>
+
+                <p class="pn-note">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 7.6h.01"/>
+                    </svg>
+                    <span>
+                        Questions about a transfer that is already underway are best answered while both
+                        tabs are still open — the app shows connection state and per-file progress live.
+                    </span>
+                </p>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================================== footer -->
+    <footer class="pn-footer">
+        <div class="pn-wrap pn-footer__grid">
+            <div>
+                <a class="pn-brand" href="/how-it-works" aria-label="PairNepal home" style="margin-right:0">
+                    <span class="pn-brand__mark">
+                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.8" y="4.6" width="7.6" height="16.4" rx="2.6" transform="rotate(22 6.6 12.8)"/><rect x="13.6" y="4.6" width="7.6" height="16.4" rx="2.6" transform="rotate(-22 17.4 12.8)"/></svg>
+                    </span>
+                    <span class="pn-brand__text">
+                        <span class="pn-brand__name">PairNepal</span>
+                        <span class="pn-brand__tag">Send files, instantly</span>
+                    </span>
+                </a>
+                <p>
+                    A peer-to-peer file transfer tool for every device you own — no signup, no cables, no
+                    upload limit.
+                </p>
+            </div>
+
+            <div>
+                <nav aria-label="Footer">
+                    <a href="/">Open the app</a>
+                    <a href="/how-it-works">How it works</a>
+                    <a href="/faq">FAQ</a>
+                    <a href="/how-it-works#sound">Sound design</a>
+                </nav>
+                <div class="pn-credit pn-credit--left">
+                    <span>PairNepal — built by <a href="https://samirpuri.com.np" target="_blank" rel="noreferrer noopener">Samir Puri</a></span>
+                    <span class="pn-credit__item"><span class="pn-credit__sep" aria-hidden="true">·</span><a href="mailto:Developer@samirpuri.com.np">Developer@samirpuri.com.np</a></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/pairnepal-sound.js" defer></script>
+    <script src="scripts/pairnepal-motion.js" defer></script>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function () {
+            var sound = window.PairNepalSound;
+            var slot = document.getElementById('pn-sound-slot');
+            if (sound && slot) slot.appendChild(sound.button());
+
+            var bar = document.querySelector('.pn-topbar');
+            if (bar) {
+                var onScroll = function () {
+                    bar.classList.toggle('is-stuck', window.scrollY > 8);
+                };
+                window.addEventListener('scroll', onScroll, { passive: true });
+                onScroll();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

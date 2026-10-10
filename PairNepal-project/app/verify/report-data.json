@@ -1,0 +1,71 @@
+{
+  "bodyFont": "\"Instrument Sans\", system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+  "brandExists": true,
+  "brandNameFont": "\"Instrument Serif\", \"Iowan Old Style\", Georgia, serif",
+  "brandNameText": "PairNepal",
+  "brandOnLeft": true,
+  "emptyStateClassName": null,
+  "fontsCheck": {
+    "instrumentSans": true,
+    "instrumentSerif": true
+  },
+  "headerButtonCount": 0,
+  "headerGeometry": {
+    "brand": {
+      "left": 22,
+      "right": 166.1796875,
+      "top": 14,
+      "width": 144.1796875
+    },
+    "buttons": [],
+    "header": {
+      "height": 64,
+      "left": 0,
+      "right": 895,
+      "top": 0,
+      "width": 895
+    }
+  },
+  "headerIconButtons": [],
+  "loadedFontFaces": [
+    "Instrument Sans | 400 700 | normal | loaded",
+    "Instrument Sans | 400 700 | normal | loaded",
+    "Instrument Serif | 400 | italic | unloaded",
+    "Instrument Serif | 400 | italic | unloaded",
+    "Instrument Serif | 400 | normal | unloaded",
+    "Instrument Serif | 400 | normal | loaded",
+    "JetBrains Mono | 400 | normal | unloaded",
+    "JetBrains Mono | 400 | normal | unloaded",
+    "JetBrains Mono | 400 | normal | unloaded",
+    "JetBrains Mono | 400 | normal | unloaded",
+    "JetBrains Mono | 400 | normal | unloaded",
+    "JetBrains Mono | 400 | normal | loaded",
+    "JetBrains Mono | 600 | normal | unloaded",
+    "JetBrains Mono | 600 | normal | unloaded",
+    "JetBrains Mono | 600 | normal | unloaded",
+    "JetBrains Mono | 600 | normal | unloaded",
+    "JetBrains Mono | 600 | normal | unloaded",
+    "JetBrains Mono | 600 | normal | unloaded",
+    "Open Sans | normal | normal | loaded"
+  ],
+  "pnIdentInsideEmptyState": null,
+  "pnIdentLabelExists": true,
+  "pnIdentLabelSamples": [
+    "looking",
+    "looking",
+    "looking",
+    "looking"
+  ],
+  "pnIdentLabelTimeline": [
+    0,
+    1.2,
+    3.2,
+    5.2
+  ],
+  "pnIdentPresent": true,
+  "soundToggle": {
+    "exists": false
+  },
+  "taglineText": null,
+  "title": "PairNepal — Send files between devices, instantly"
+}

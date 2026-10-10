@@ -1,0 +1,32 @@
+# PairNepal — https://pairnepal.bond
+#
+# Canonical URLs are extensionless:
+#   /            the app (peer-to-peer file transfer)
+#   /how-it-works  brand / how-it-works page
+#   /faq           frequently asked questions
+#
+# The legacy .html forms and /index.html 301-redirect to those, so they are
+# deliberately NOT disallowed here — a crawler has to be free to fetch them in
+# order to see the redirect and consolidate the signals onto the canonical URL.
+
+User-agent: *
+Allow: /
+
+# Signalling endpoint: a WebSocket upgrade route, useless to a crawler.
+Disallow: /api/
+Disallow: /server
+
+# Not pages — be explicit so no crawl budget is wasted.
+Disallow: /config
+Disallow: /lang/
+
+# Transient share/room parameters. These are session URLs, generated per
+# transfer, and every one of them renders the app on / itself.
+Disallow: /*?pair_key=
+Disallow: /*?room_id=
+Disallow: /*?base64text=
+Disallow: /*?base64zip=
+Disallow: /*?share_target=
+Disallow: /*?file_handler=
+
+Sitemap: https://pairnepal.bond/sitemap.xml

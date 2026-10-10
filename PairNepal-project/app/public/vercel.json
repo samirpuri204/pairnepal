@@ -1,0 +1,75 @@
+{
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "https://pairnepal.bond/",
+      "permanent": true
+    },
+    {
+      "source": "/brand.html",
+      "destination": "https://pairnepal.bond/how-it-works",
+      "permanent": true
+    },
+    {
+      "source": "/faq.html",
+      "destination": "https://pairnepal.bond/faq",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.pairnepal.bond" }],
+      "destination": "https://pairnepal.bond/$1",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
+        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" }
+      ]
+    },
+    {
+      "source": "/manifest.json",
+      "headers": [
+        { "key": "Content-Type", "value": "application/manifest+json" }
+      ]
+    },
+    {
+      "source": "/service-worker.js",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+      ]
+    },
+    {
+      "source": "/fonts/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ],
+  "rewrites": [
+    { "source": "/config", "destination": "/config.json" },
+    { "source": "/server", "destination": "/api/server" },
+    { "source": "/how-it-works", "destination": "/brand.html" },
+    { "source": "/faq", "destination": "/faq.html" }
+  ],
+  "fluid": true,
+  "functions": {
+    "api/server.js": {
+      "maxDuration": 300
+    }
+  },
+  "regions": ["sin1"]
+}

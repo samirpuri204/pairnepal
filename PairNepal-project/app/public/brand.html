@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How PairNepal Works — Pair Nepal File Transfer, Step by Step</title>
+    <meta name="description" content="How PairNepal (also written Pair Nepal) moves photos, video and documents between your phone, laptop and tablet, with no signup, no cables and no size limit.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://pairnepal.bond/how-it-works">
+    <link rel="alternate" hreflang="en" href="https://pairnepal.bond/how-it-works">
+    <link rel="alternate" hreflang="x-default" href="https://pairnepal.bond/how-it-works">
+    <meta name="author" content="Samir Puri">
+    <link rel="author" href="https://samirpuri.com.np">
+
+    <meta name="theme-color" content="#f7f8fa" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b0d12" media="(prefers-color-scheme: dark)">
+    <meta name="color-scheme" content="light dark">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="icon" href="images/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PairNepal">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://pairnepal.bond/how-it-works">
+    <meta property="og:title" content="How PairNepal Works — Free Peer-to-Peer File Transfer">
+    <meta property="og:description" content="Three steps, no account. How files move device to device instead of through a server.">
+    <meta property="og:image" content="https://pairnepal.bond/images/pairnepal-social.png">
+    <meta property="og:image:secure_url" content="https://pairnepal.bond/images/pairnepal-social.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="PairNepal — send files between every screen you own">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How PairNepal Works — Free Peer-to-Peer File Transfer">
+    <meta name="twitter:description" content="Three steps, no account. How files move device to device instead of through a server.">
+    <meta name="twitter:image" content="https://pairnepal.bond/images/pairnepal-social.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap">
+
+    <link rel="stylesheet" href="styles/brand.css">
+    <link rel="stylesheet" href="styles/landing.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "FAQPage",
+          "@id": "https://pairnepal.bond/how-it-works#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is there a file size limit?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Your browser and your disk are the limits. Because files never pass through our server, there is no upload cap — a 4 GB video is fine on a local network."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do both devices need the same Wi-Fi?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Same network is the fastest and simplest path, but you can pair devices once with a six-digit code, or join a temporary five-letter room, and transfer across different networks."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Where do my files go?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Straight to the other device. The server only helps the two devices find each other; the file data travels directly between them."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do I need to install anything?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. PairNepal runs in the browser. You can optionally add it to your home screen so it opens like an app."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why does it make sounds?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Because a transfer has no visible feedback until it finishes. Sound is off by default and you turn it on when you want it."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://pairnepal.bond/how-it-works#webpage",
+          "url": "https://pairnepal.bond/how-it-works",
+          "name": "How PairNepal Works — Pair Nepal File Transfer, Step by Step",
+          "alternateName": ["Pair Nepal", "pair nepal", "Pairnepal", "pairnepal"],
+          "inLanguage": "en",
+          "isPartOf": { "@id": "https://pairnepal.bond/#website" },
+          "about": { "@id": "https://pairnepal.bond/#app" },
+          "primaryImageOfPage": "https://pairnepal.bond/images/pairnepal-social.png",
+          "author": { "@id": "https://pairnepal.bond/#developer" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "PairNepal",
+              "item": "https://pairnepal.bond/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "How it works",
+              "item": "https://pairnepal.bond/how-it-works"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+</head>
+
+<body>
+
+    <header class="pn-topbar">
+        <div class="pn-wrap pn-topbar__inner">
+            <a class="pn-brand" href="/how-it-works" aria-label="PairNepal home">
+                <span class="pn-brand__mark">
+                    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.8" y="4.6" width="7.6" height="16.4" rx="2.6" transform="rotate(22 6.6 12.8)"/><rect x="13.6" y="4.6" width="7.6" height="16.4" rx="2.6" transform="rotate(-22 17.4 12.8)"/></svg>
+                </span>
+                <span class="pn-brand__text">
+                    <span class="pn-brand__name">PairNepal</span>
+                    <span class="pn-brand__tag">Send files, instantly</span>
+                </span>
+            </a>
+
+            <nav class="pn-nav" aria-label="Sections">
+                <a href="#how">How it works</a>
+                <a href="#why">Why it's different</a>
+                <a href="#sound">Sound design</a>
+                <a href="#ident">Brand motion</a>
+                <a href="/faq">FAQ</a>
+            </nav>
+
+            <span id="pn-sound-slot"></span>
+
+            <a class="pn-btn pn-btn--primary" style="height:40px;padding:0 18px;font-size:14px" href="/">Open the app</a>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ============================================================ hero -->
+        <section class="pn-hero">
+            <div class="pn-wrap pn-hero__grid">
+
+                <div>
+                    <p class="pn-eyebrow">No signup · no cables · no upload limit</p>
+
+                    <h1>
+                        <span data-pn-cut data-pn-split="words" data-pn-stagger="0.055">Send files between</span>
+                        <em data-pn-reveal>every screen you own</em>
+                    </h1>
+
+                    <p class="pn-lede">
+                        Open PairNepal on two devices and they find each other. Photos keep their original
+                        quality, files move device to device instead of through a server, and nothing is
+                        compressed to fit an attachment limit. Whether you type it as PairNepal, Pair Nepal,
+                        pair nepal or pairnepal, you are in the right place.
+                    </p>
+
+                    <div class="pn-cta-row">
+                        <span data-pn-magnetic="0.5" data-pn-range="140">
+                            <a class="pn-btn pn-btn--primary" href="/">
+                                Send a file now
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M5 12h14M13 6l6 6-6 6"/>
+                                </svg>
+                            </a>
+                        </span>
+                        <a class="pn-btn pn-btn--ghost" href="#how">See how it works</a>
+                    </div>
+
+                    <div class="pn-hero__meta">
+                        <span class="badge">Works on any browser</span>
+                        <span class="badge">Direct device to device</span>
+                        <span class="badge">Rooms for remote</span>
+                    </div>
+                </div>
+
+                <div class="pn-hero__panel" data-pn-reveal>
+                    <div class="pn-ident" role="img" aria-label="Two devices connected, a file moving between them">
+                        <span class="pn-ident__ring"></span>
+                        <span class="pn-ident__ring" style="inset:13%"></span>
+                        <svg class="pn-ident__svg" viewBox="0 0 260 130" fill="none" aria-hidden="true">
+                            <line class="pn-ident__beam" x1="62" y1="65" x2="198" y2="65" stroke-width="1.8"/>
+                            <circle class="pn-ident__packet" cx="62" cy="65" r="4.5" data-pn-travel="136"/>
+                            <g class="pn-ident__node">
+                                <rect x="22" y="41" width="40" height="48" rx="11" stroke="currentColor" stroke-width="1.6"/>
+                                <path d="M37 80h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                                <path d="M34 60h16M34 67h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".6"/>
+                            </g>
+                            <g class="pn-ident__node">
+                                <rect x="108" y="34" width="52" height="36" rx="6" stroke="currentColor" stroke-width="1.6"/>
+                                <path d="M100 77h68a4 4 0 0 1-4 4h-60a4 4 0 0 1-4-4z" stroke="currentColor" stroke-width="1.4"/>
+                                <path d="M118 46h32M118 54h20" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".6"/>
+                            </g>
+                            <g class="pn-ident__node">
+                                <rect x="198" y="44" width="38" height="42" rx="10" stroke="currentColor" stroke-width="1.6"/>
+                                <path d="M210 60h14M210 67h9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".6"/>
+                            </g>
+                        </svg>
+                        <span class="pn-ident__label">looking</span>
+                    </div>
+                    <div class="pn-hero__meta">
+                        <span class="badge">Phone → laptop</span>
+                        <span class="badge">≈ 24 MB/s on Wi-Fi</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ====================================================== how it works -->
+        <section class="pn-section" id="how">
+            <div class="pn-wrap">
+                <div class="pn-section__head" data-pn-reveal>
+                    <p class="pn-kicker">How it works</p>
+                    <h2>Three steps, no account</h2>
+                    <p>
+                        PairNepal is a web page, not an installation. Both devices open it, they see each
+                        other, and the transfer runs directly between them.
+                    </p>
+                </div>
+
+                <div class="pn-steps" data-pn-reveal data-pn-reveal-children>
+                    <div class="pn-step">
+                        <h3>Open it on both devices</h3>
+                        <p>Same Wi-Fi and they appear automatically. On different networks, pair once with a six-digit code or join a shared room.</p>
+                    </div>
+                    <div class="pn-step">
+                        <h3>Pick who receives</h3>
+                        <p>Tap the device name, or drag files anywhere on the page first and choose a recipient after.</p>
+                    </div>
+                    <div class="pn-step">
+                        <h3>They accept, it moves</h3>
+                        <p>Files transfer directly. Multiple files arrive as a single zip, and progress is shown per file.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ why -->
+        <section class="pn-section" id="why">
+            <div class="pn-wrap">
+                <div class="pn-section__head" data-pn-reveal>
+                    <p class="pn-kicker">Why it's different</p>
+                    <h2>Built for the file that is too big to send</h2>
+                    <p>
+                        Messaging apps recompress photos and cap video. Cloud drives need an account and a
+                        round trip through someone else's disk. PairNepal does neither.
+                    </p>
+                </div>
+
+                <div class="pn-cards" data-pn-reveal data-pn-reveal-children>
+                    <article class="pn-card">
+                        <span class="pn-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/>
+                            </svg>
+                        </span>
+                        <h3>Original quality, always</h3>
+                        <p>Bytes are copied, not re-encoded. A 48 MP photo arrives as the 48 MP photo, not a 2 MB preview.</p>
+                    </article>
+
+                    <article class="pn-card">
+                        <span class="pn-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M7 11V8a5 5 0 0 1 10 0v3"/><rect x="4" y="11" width="16" height="10" rx="2.5"/>
+                            </svg>
+                        </span>
+                        <h3>It stays between you</h3>
+                        <p>The transfer is peer to peer. PairNepal's server introduces the two devices and then steps out of the way.</p>
+                    </article>
+
+                    <article class="pn-card">
+                        <span class="pn-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="3" y="4.5" width="18" height="12" rx="2.5"/><path d="M2 19.5h20"/><path d="M12 12h.01"/>
+                            </svg>
+                        </span>
+                        <h3>Every platform, including that one</h3>
+                        <p>Android to iPhone, Windows to Mac, Linux to anything. If it has a modern browser, it works.</p>
+                    </article>
+
+                    <article class="pn-card">
+                        <span class="pn-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M7 10v6M12 8v10M17 6v14"/><rect x="2.5" y="3.5" width="19" height="17" rx="4"/>
+                            </svg>
+                        </span>
+                        <h3>Rooms for different cities</h3>
+                        <p>Not on the same network? Join a five-letter room code and devices connect across the internet instead.</p>
+                    </article>
+
+                    <article class="pn-card pn-card--wide">
+                        <span class="pn-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16z"/><path d="M14.5 5.5 18.5 9.5"/>
+                            </svg>
+                        </span>
+                        <h3>Installable, and it keeps working offline as an app shell</h3>
+                        <p>
+                            Add PairNepal to your home screen and it behaves like a native app: it opens
+                            instantly, remembers your device name, and keeps paired devices between sessions.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================== sound -->
+        <section class="pn-section" id="sound">
+            <div class="pn-wrap">
+                <div class="pn-section__head" data-pn-reveal>
+                    <p class="pn-kicker">Sound design</p>
+                    <h2>Seven cues, made from scratch</h2>
+                    <p>
+                        The interface has a voice. Every cue below is synthesised in the browser with the
+                        Web Audio API — no audio files, nothing to download, and nothing that plays until
+                        you ask for it.
+                    </p>
+                </div>
+
+                <div class="pn-soundkit" data-pn-reveal data-pn-reveal-children>
+                    <button class="pn-cue" type="button" data-cue="tick"><span class="pn-cue__dot"></span><span>Hover<span class="pn-cue__meta">2100 → 1750 Hz · 50ms</span></span></button>
+                    <button class="pn-cue" type="button" data-cue="click"><span class="pn-cue__dot"></span><span>Press<span class="pn-cue__meta">720 → 520 Hz · 70ms</span></span></button>
+                    <button class="pn-cue" type="button" data-cue="found"><span class="pn-cue__dot"></span><span>Device found<span class="pn-cue__meta">perfect fifth · 220ms</span></span></button>
+                    <button class="pn-cue" type="button" data-cue="notify"><span class="pn-cue__dot"></span><span>Incoming<span class="pn-cue__meta">two-tone · 380ms</span></span></button>
+                    <button class="pn-cue" type="button" data-cue="send"><span class="pn-cue__dot"></span><span>Sending<span class="pn-cue__meta">filtered sweep · 520ms</span></span></button>
+                    <button class="pn-cue" type="button" data-cue="done"><span class="pn-cue__dot"></span><span>Delivered<span class="pn-cue__meta">major triad · 620ms</span></span></button>
+                    <button class="pn-cue" type="button" data-cue="fault"><span class="pn-cue__dot"></span><span>Something failed<span class="pn-cue__meta">descending · 240ms</span></span></button>
+                </div>
+
+                <div class="pn-note">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>
+                    </svg>
+                    <span>
+                        Sound is off until you turn it on — tap any cue above, or the speaker icon in the
+                        header of the app. Your choice is remembered. Every cue is one-shot and stops by
+                        itself; nothing loops.
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================== ident -->
+        <section class="pn-section" id="ident">
+            <div class="pn-wrap">
+                <div class="pn-section__head" data-pn-reveal>
+                    <p class="pn-kicker">Brand motion</p>
+                    <h2>The ident is drawn, not filmed</h2>
+                    <p>
+                        The animation you see is live SVG running in this page — not a video file. It scales
+                        to any screen, follows the light and dark themes, and weighs a fraction of a GIF.
+                    </p>
+                </div>
+
+                <div class="pn-movie" data-pn-reveal>
+                    <div class="pn-movie__stage">
+                        <div class="pn-ident" role="img" aria-label="Animated ident: a file travelling from a phone to a laptop to a tablet">
+                            <span class="pn-ident__ring"></span>
+                            <span class="pn-ident__ring" style="inset:13%"></span>
+                            <svg class="pn-ident__svg" viewBox="0 0 260 130" fill="none" aria-hidden="true">
+                                <line class="pn-ident__beam" x1="62" y1="65" x2="198" y2="65" stroke-width="1.8"/>
+                                <circle class="pn-ident__packet" cx="62" cy="65" r="4.5" data-pn-travel="136"/>
+                                <g class="pn-ident__node">
+                                    <rect x="22" y="41" width="40" height="48" rx="11" stroke="currentColor" stroke-width="1.6"/>
+                                    <path d="M37 80h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                                    <path d="M34 60h16M34 67h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".6"/>
+                                </g>
+                                <g class="pn-ident__node">
+                                    <rect x="108" y="34" width="52" height="36" rx="6" stroke="currentColor" stroke-width="1.6"/>
+                                    <path d="M100 77h68a4 4 0 0 1-4 4h-60a4 4 0 0 1-4-4z" stroke="currentColor" stroke-width="1.4"/>
+                                    <path d="M118 46h32M118 54h20" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".6"/>
+                                </g>
+                                <g class="pn-ident__node">
+                                    <rect x="198" y="44" width="38" height="42" rx="10" stroke="currentColor" stroke-width="1.6"/>
+                                    <path d="M210 60h14M210 67h9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".6"/>
+                                </g>
+                            </svg>
+                            <span class="pn-ident__label">looking</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3>Sequence</h3>
+                        <p>
+                            Devices wake left to right, the link draws between them, a packet crosses, and the
+                            status line reports what is happening. The loop is 3.6 seconds and pauses itself
+                            whenever the tab is hidden or the ident scrolls out of view.
+                        </p>
+                        <ul class="pn-spec">
+                            <li><span>Cycle</span><b>3.6 s</b></li>
+                            <li><span>Animated properties</span><b>transform, opacity</b></li>
+                            <li><span>Asset weight</span><b>~2 KB inline</b></li>
+                            <li><span>Reduced motion</span><b>static end frame</b></li>
+                        </ul>
+                        <a class="pn-btn pn-btn--ghost" href="/">See it in the app</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ faq -->
+        <section class="pn-section" id="faq">
+            <div class="pn-wrap">
+                <div class="pn-section__head" data-pn-reveal>
+                    <p class="pn-kicker">Questions</p>
+                    <h2>The things people ask first</h2>
+                    <p>
+                        The short answers are below. For the full set — size limits, pair codes, how rooms
+                        work across networks, privacy, and what to do when a device will not appear — read
+                        the <a href="/faq">PairNepal FAQ</a>.
+                    </p>
+                </div>
+
+                <div class="pn-faq" data-pn-reveal data-pn-reveal-children>
+                    <details open>
+                        <summary>Is there a file size limit?</summary>
+                        <p>
+                            Your browser and your disk are the limits. Because files never pass through our
+                            server, there is no upload cap — a 4 GB video is fine on a local network.
+                        </p>
+                    </details>
+                    <details>
+                        <summary>Do both devices need the same Wi-Fi?</summary>
+                        <p>
+                            No. Same network is the fastest and simplest path, but you can pair devices once
+                            with a six-digit code, or join a temporary five-letter room, and transfer across
+                            different networks.
+                        </p>
+                    </details>
+                    <details>
+                        <summary>Where do my files go?</summary>
+                        <p>
+                            Straight to the other device. The server only helps the two devices find each
+                            other; the file data travels directly between them.
+                        </p>
+                    </details>
+                    <details>
+                        <summary>Do I need to install anything?</summary>
+                        <p>
+                            No. PairNepal runs in the browser. You can optionally add it to your home screen
+                            so it opens like an app.
+                        </p>
+                    </details>
+                    <details>
+                        <summary>Why does it make sounds?</summary>
+                        <p>
+                            Because a transfer has no visible feedback until it finishes. Sound is off by
+                            default and you turn it on when you want it.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================================== footer -->
+    <footer class="pn-footer">
+        <div class="pn-wrap pn-footer__grid">
+            <div>
+                <a class="pn-brand" href="/how-it-works" aria-label="PairNepal home" style="margin-right:0">
+                    <span class="pn-brand__mark">
+                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.8" y="4.6" width="7.6" height="16.4" rx="2.6" transform="rotate(22 6.6 12.8)"/><rect x="13.6" y="4.6" width="7.6" height="16.4" rx="2.6" transform="rotate(-22 17.4 12.8)"/></svg>
+                    </span>
+                    <span class="pn-brand__text">
+                        <span class="pn-brand__name">PairNepal</span>
+                        <span class="pn-brand__tag">Send files, instantly</span>
+                    </span>
+                </a>
+                <p>
+                    A peer-to-peer file transfer tool for every device you own — no signup, no cables, no
+                    upload limit.
+                </p>
+            </div>
+
+            <div>
+                <nav aria-label="Footer">
+                    <a href="/">Open the app</a>
+                    <a href="#how">How it works</a>
+                    <a href="/faq">FAQ</a>
+                    <a href="#sound">Sound design</a>
+                </nav>
+                <div class="pn-credit pn-credit--left">
+                    <span>PairNepal — built by <a href="https://samirpuri.com.np" target="_blank" rel="noreferrer noopener">Samir Puri</a></span>
+                    <span class="pn-credit__item"><span class="pn-credit__sep" aria-hidden="true">·</span><a href="mailto:Developer@samirpuri.com.np">Developer@samirpuri.com.np</a></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/pairnepal-sound.js" defer></script>
+    <script src="scripts/pairnepal-motion.js" defer></script>
+    <script defer>
+        // Mount the sound toggle and wire the cue previews. Kept inline because it
+        // is page-specific glue, not part of the shared brand layer.
+        document.addEventListener('DOMContentLoaded', function () {
+            var sound = window.PairNepalSound;
+            var slot = document.getElementById('pn-sound-slot');
+            if (sound && slot) slot.appendChild(sound.button());
+
+            document.querySelectorAll('.pn-cue').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var name = btn.getAttribute('data-cue');
+                    // Tapping a cue is an unambiguous request to hear it, so it is
+                    // also the moment sound gets switched on.
+                    if (!sound.isEnabled()) sound.setEnabled(true);
+                    sound.play(name);
+                    btn.classList.add('is-live');
+                    setTimeout(function () { btn.classList.remove('is-live'); }, 700);
+                });
+            });
+
+            var bar = document.querySelector('.pn-topbar');
+            if (bar) {
+                var onScroll = function () {
+                    bar.classList.toggle('is-stuck', window.scrollY > 8);
+                };
+                window.addEventListener('scroll', onScroll, { passive: true });
+                onScroll();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

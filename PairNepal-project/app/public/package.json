@@ -1,0 +1,12 @@
+{
+  "name": "pairnepal-signalling",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "PairNepal signalling server (Vercel Function)",
+  "dependencies": {
+    "ws": "^8.16.0",
+    "ua-parser-js": "^1.0.37",
+    "unique-names-generator": "^4.3.0"
+  }
+}

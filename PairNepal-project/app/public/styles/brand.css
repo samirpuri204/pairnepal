@@ -1,0 +1,1799 @@
+/* =============================================================================
+   PairNepal — brand layer
+   Loaded after styles-main.css and styles-deferred.css.
+   Keeps the upstream app DOM contract untouched (every id/class it styles
+   still exists); this file re-tokenises and re-skins.
+
+   Craft rules applied (see research/CRAFT.md):
+   - one accent per view; crimson is the only interactive accent
+   - motion on transform/opacity only, interaction feedback <= 200ms
+   - no gradient or glow used as a primary affordance
+   - prefers-reduced-motion honoured everywhere
+   - fixed z-index scale (--pn-z-*), no arbitrary values
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   1. Tokens
+   ------------------------------------------------------------------------ */
+:root {
+    /* surfaces */
+    --pn-canvas: #f7f8fa;
+    --pn-surface: #ffffff;
+    --pn-surface-2: #f1f3f7;
+    --pn-surface-3: #e9ecf3;
+
+    /* lines */
+    --pn-line: #e4e7ee;
+    --pn-line-strong: #d3d8e3;
+
+    /* ink */
+    --pn-ink: #101828;
+    --pn-ink-2: #475467;
+    --pn-ink-3: #8896ab;
+
+    /* accent — the single interactive accent */
+    --pn-accent: #c11235;
+    --pn-accent-hover: #a30e2c;
+    --pn-accent-soft: #fdeef1;
+
+    /* brand + semantics (identity and status only, never affordances) */
+    --pn-brand-crimson: #dc143c;
+    --pn-blue: #003893;
+    --pn-blue-soft: #edf1fa;
+    --pn-ok: #0e9f6e;
+    --pn-ok-soft: #e6f6f0;
+    --pn-warn: #b45309;
+    --pn-warn-soft: #fdf3e7;
+    --pn-danger: #b42318;
+
+    /* type */
+    --pn-font-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+    --pn-font-ui: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --pn-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    /* radii */
+    --pn-r-xs: 8px;
+    --pn-r-sm: 10px;
+    --pn-r-md: 14px;
+    --pn-r-lg: 20px;
+    --pn-r-xl: 28px;
+    --pn-r-pill: 999px;
+
+    /* elevation — light, never decorative */
+    --pn-shadow-1: 0 1px 2px rgba(16, 24, 40, .05);
+    --pn-shadow-2: 0 10px 24px -18px rgba(16, 24, 40, .38);
+    --pn-shadow-3: 0 28px 56px -34px rgba(16, 24, 40, .45);
+
+    /* z-index scale */
+    --pn-z-base: 1;
+    --pn-z-raised: 5;
+    --pn-z-header: 20;
+    --pn-z-panel: 40;
+    --pn-z-dialog: 60;
+    --pn-z-toast: 80;
+
+    /* motion */
+    --pn-ease-out: cubic-bezier(.22, .61, .36, 1);
+    --pn-ease-in-out: cubic-bezier(.4, 0, .2, 1);
+    --pn-dur-feedback: 160ms;
+    --pn-dur-shift: 260ms;
+    --pn-dur-enter: 420ms;
+
+    --pn-hairline: 1px solid var(--pn-line);
+    --pn-focus: 0 0 0 2px var(--pn-surface), 0 0 0 4px var(--pn-accent);
+}
+
+/* Map the upstream app tokens onto the brand values.
+   --text-color / --bg-color must stay RGB triplets (used as rgb(var(--x))). */
+body {
+    --primary-color: var(--pn-accent);
+    --paired-device-color: var(--pn-blue);
+    --public-room-color: var(--pn-warn);
+    --accent-color: var(--pn-accent);
+    --ws-peer-color: var(--pn-danger);
+    --btn-disabled-color: var(--pn-ink-3);
+
+    --text-color: 16, 24, 40;
+    --bg-color: 247, 248, 250;
+    --bg-color-secondary: #ffffff;
+    --dialog-bg-color: #ffffff;
+    --border-color: #e4e7ee;
+    --badge-color: #8896ab;
+    --lang-hr-color: #e4e7ee;
+
+    --shadow-color-rgb: 16, 24, 40;
+    --shadow-color-cover-rgb: 247, 248, 250;
+    --shadow-color-secondary-rgb: 16, 24, 40;
+    --shadow-color-secondary-cover-rgb: 241, 243, 247;
+    --shadow-color-dialog-rgb: 16, 24, 40;
+    --shadow-color-dialog-cover-rgb: 247, 248, 250;
+
+    --icon-size: 22px;
+    --peer-width: 132px;
+}
+
+/* Refined dark theme — same hues, inverted surfaces, accent lifted for contrast. */
+body.dark-theme {
+    --pn-canvas: #0b0d12;
+    --pn-surface: #14171f;
+    --pn-surface-2: #1b1f29;
+    --pn-surface-3: #242936;
+    --pn-line: #262c39;
+    --pn-line-strong: #333a4a;
+    --pn-ink: #eef1f7;
+    --pn-ink-2: #a7b0c0;
+    --pn-ink-3: #6f7a8d;
+    --pn-accent: #ff5470;
+    --pn-accent-hover: #ff7089;
+    --pn-accent-soft: #2b1319;
+    --pn-blue: #7aa2f7;
+    --pn-blue-soft: #131b2e;
+    --pn-ok: #4ad4a4;
+    --pn-ok-soft: #10231d;
+    --pn-warn: #f0b357;
+    --pn-warn-soft: #241b0f;
+    --pn-danger: #ff8a80;
+
+    --text-color: 238, 241, 247;
+    --bg-color: 11, 13, 18;
+    --bg-color-secondary: #14171f;
+    --dialog-bg-color: #14171f;
+    --border-color: #262c39;
+    --badge-color: #6f7a8d;
+    --lang-hr-color: #262c39;
+
+    --shadow-color-rgb: 0, 0, 0;
+    --shadow-color-cover-rgb: 11, 13, 18;
+    --shadow-color-secondary-rgb: 0, 0, 0;
+    --shadow-color-secondary-cover-rgb: 20, 23, 31;
+    --shadow-color-dialog-rgb: 0, 0, 0;
+    --shadow-color-dialog-cover-rgb: 11, 13, 18;
+
+    --pn-shadow-1: 0 1px 2px rgba(0, 0, 0, .5);
+    --pn-shadow-2: 0 10px 24px -18px rgba(0, 0, 0, .8);
+    --pn-shadow-3: 0 28px 56px -34px rgba(0, 0, 0, .9);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-theme) {
+        --pn-canvas: #0b0d12;
+        --pn-surface: #14171f;
+        --pn-surface-2: #1b1f29;
+        --pn-surface-3: #242936;
+        --pn-line: #262c39;
+        --pn-line-strong: #333a4a;
+        --pn-ink: #eef1f7;
+        --pn-ink-2: #a7b0c0;
+        --pn-ink-3: #6f7a8d;
+        --pn-accent: #ff5470;
+        --pn-accent-hover: #ff7089;
+        --pn-accent-soft: #2b1319;
+        --pn-blue: #7aa2f7;
+        --pn-blue-soft: #131b2e;
+        --pn-ok: #4ad4a4;
+        --pn-ok-soft: #10231d;
+        --pn-warn: #f0b357;
+        --pn-warn-soft: #241b0f;
+
+        --text-color: 238, 241, 247;
+        --bg-color: 11, 13, 18;
+        --bg-color-secondary: #14171f;
+        --dialog-bg-color: #14171f;
+        --border-color: #262c39;
+        --badge-color: #6f7a8d;
+        --lang-hr-color: #262c39;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   2. Base
+   ------------------------------------------------------------------------ */
+body {
+    background-color: var(--pn-canvas);
+    color: var(--pn-ink);
+    font-family: var(--pn-font-ui);
+    font-size: 15px;
+    line-height: 1.55;
+    font-feature-settings: "cv05" 1, "ss01" 1;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transition: background-color var(--pn-dur-shift) var(--pn-ease-out),
+                color var(--pn-dur-shift) var(--pn-ease-out);
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--pn-font-display);
+    font-weight: 400;
+    letter-spacing: -.01em;
+    text-wrap: balance;
+    color: var(--pn-ink);
+}
+
+p { text-wrap: pretty; }
+
+code, kbd, samp, .font-mono { font-family: var(--pn-font-mono); }
+
+::selection {
+    background: var(--pn-accent);
+    color: var(--pn-accent-ink, #fff);
+}
+
+/* Focus is always visible and never removed. */
+:focus-visible {
+    outline: none;
+    box-shadow: var(--pn-focus);
+    border-radius: var(--pn-r-xs);
+}
+
+/* Accessible skip target for keyboard users. */
+.pn-skip {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: var(--pn-z-toast);
+    background: var(--pn-surface);
+    color: var(--pn-ink);
+    padding: 10px 16px;
+    border-radius: var(--pn-r-sm);
+    border: var(--pn-hairline);
+    font-weight: 600;
+}
+.pn-skip:focus { left: 12px; top: 12px; }
+
+/* ---------------------------------------------------------------------------
+   3. Header
+   ------------------------------------------------------------------------ */
+header {
+    padding: 14px 18px;
+    min-height: 64px;
+    align-items: center;
+}
+
+/* Upstream ships `header * { transition: all 300ms }`; on the icon buttons that
+   reads as sluggish, so it is switched off there and only there. */
+header .icon-button,
+header .icon-button * { transition: none; }
+
+header > .icon-button,
+header .icon-button {
+    height: 38px;
+    min-width: 38px;
+    border-radius: var(--pn-r-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pn-ink-2);
+    border: 1px solid transparent;
+}
+
+header .icon-button:hover {
+    background: var(--pn-surface-2);
+    border-color: var(--pn-line);
+    color: var(--pn-ink);
+}
+
+header .icon-button.selected {
+    background: var(--pn-accent-soft);
+    border-color: transparent;
+    color: var(--pn-accent);
+}
+
+header .icon-button:active { background: var(--pn-surface-3); }
+
+/* The brand lockup lives in the header and is keyboard-focusable. */
+.pn-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    /* row-reverse: this margin is the side facing the tool cluster, so it
+       consumes the free space and pushes the brand to the far left. */
+    margin-right: auto;
+    border-radius: var(--pn-r-sm);
+    padding: 4px 8px 4px 4px;
+    text-decoration: none;
+    color: inherit;
+    min-width: 0;
+}
+
+.pn-brand__mark {
+    width: 34px;
+    height: 34px;
+    flex: none;
+    border-radius: var(--pn-r-sm);
+    display: grid;
+    place-items: center;
+    /* Matches the generated favicon/app icons exactly: solid accent tile,
+       white mark. Previously a soft tint with an accent mark, which made the
+       tab icon and the in-app logo disagree. */
+    background: var(--pn-accent);
+    border: 1px solid transparent;
+    box-shadow: var(--pn-shadow-1);
+}
+
+.pn-brand__mark svg { width: 20px; height: 20px; display: block; }
+
+.pn-brand__text { display: flex; flex-direction: column; line-height: 1.1; min-width: 0; }
+
+.pn-brand__name {
+    font-family: var(--pn-font-display);
+    font-size: 19px;
+    letter-spacing: -.015em;
+    color: var(--pn-ink);
+    white-space: nowrap;
+}
+
+.pn-brand__tag {
+    font-size: 10.5px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    /* ink-3 is ~2.8:1 on the light canvas — too faint for text this small.
+       ink-2 clears AA at roughly 7:1 in light and stays comfortable in dark. */
+    color: var(--pn-ink-2);
+    white-space: nowrap;
+}
+
+@media (max-width: 620px) {
+    .pn-brand__tag { display: none; }
+    .pn-brand__name { font-size: 17px; }
+}
+
+/* ---------------------------------------------------------------------------
+   4. Device grid (peers)
+   ------------------------------------------------------------------------ */
+#center {
+    padding: 8px 18px 0;
+}
+
+x-peer {
+    padding: 10px;
+    border-radius: var(--pn-r-lg);
+    transform: scale(1);
+    transition: transform var(--pn-dur-feedback) var(--pn-ease-out);
+}
+
+x-peer:focus-visible { box-shadow: var(--pn-focus); }
+
+/* The device tile — the app's dynamic markup is
+   .column.center.pointer > .icon-wrapper + .name.font-subheading + .device-descriptor */
+x-peer > .column,
+x-peer .icon-wrapper {
+    transition: transform var(--pn-dur-shift) var(--pn-ease-out);
+}
+
+x-peer .icon-wrapper {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    border-radius: var(--pn-r-xl);
+    display: grid;
+    place-items: center;
+    background: var(--pn-surface);
+    border: var(--pn-hairline);
+    box-shadow: var(--pn-shadow-1);
+    color: var(--pn-ink-2);
+}
+
+x-peer .icon-wrapper .icon {
+    width: 40px;
+    height: 40px;
+    color: var(--pn-ink-2);
+}
+
+/* Tux is drawn with fine outline detail where every other OS mark is a solid
+   silhouette, so at tile size it reads noticeably lighter than its neighbours.
+   A small optical bump restores the match rather than swapping the glyph. */
+x-peer .icon-wrapper .icon[data-device="os-linux"] {
+    width: 47px;
+    height: 47px;
+}
+
+/* Live presence ring — a single, calm pulse. Never a glow-as-affordance. */
+x-peer .icon-wrapper .circle {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1.5px solid var(--pn-ok);
+    opacity: 0;
+}
+
+x-peer:not(.ws-peer) .icon-wrapper .circle {
+    animation: pn-presence 3.2s var(--pn-ease-out) infinite;
+    animation-play-state: paused;
+}
+
+/* Pause every looping animation while the tab is hidden (see brand-motion.js). */
+body.pn-idle x-peer .icon-wrapper .circle,
+body.pn-idle .pn-ident__ring { animation-play-state: paused; }
+
+x-peer:hover .icon-wrapper,
+x-peer:focus-within .icon-wrapper {
+    transform: translateY(-3px);
+    border-color: var(--pn-line-strong);
+    box-shadow: var(--pn-shadow-2);
+}
+
+/* A display name is something the visitor chose; an ellipsis silently hides it.
+   Two lines of break-anywhere text shows every realistic name in full while
+   keeping the tile grid aligned. */
+x-peer .name {
+    margin-top: 12px;
+    font-family: var(--pn-font-ui);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -.005em;
+    color: var(--pn-ink);
+    width: 100%;
+    max-width: 18ch;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    line-height: 1.25;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Stacked: display name, then the operating system in full, then status. */
+x-peer .device-descriptor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    margin-top: 5px;
+    width: 100%;
+}
+
+x-peer .device-name,
+x-peer .status {
+    font-size: 11.5px;
+    color: var(--pn-ink-3);
+    letter-spacing: .01em;
+}
+
+/* The operating-system name, printed in full directly under the icon tile. */
+x-peer .device-name {
+    width: 100%;
+    text-align: center;
+    overflow-wrap: anywhere;
+    font-weight: 600;
+    color: var(--pn-ink-2);
+}
+
+x-peer .status { font-variant-numeric: tabular-nums; }
+
+/* Transfer progress: a hairline, never a chunky bar. */
+x-peer .progress {
+    margin-top: 10px;
+    height: 3px;
+    width: 96px;
+    border-radius: var(--pn-r-pill);
+    background: var(--pn-surface-3);
+    overflow: hidden;
+}
+
+x-peer .progress > * {
+    height: 100%;
+    background: var(--pn-accent);
+    transform-origin: left center;
+    transition: transform 220ms linear;
+}
+
+/* Paired devices + public-room peers get a quieter, secondary treatment
+   so the single accent stays reserved for direct interaction. */
+x-peer.paired .icon-wrapper { border-color: var(--pn-blue); color: var(--pn-blue); }
+
+/* ---------------------------------------------------------------------------
+   5. Empty state + instructions
+   ------------------------------------------------------------------------ */
+x-no-peers h1,
+x-no-peers h2 {
+    font-size: clamp(22px, 3.4vw, 30px);
+    margin-bottom: 10px;
+}
+
+/* The About dialog names the product; the page's single <h1> is the discovery
+   headline in the empty state, so this stays a heading one level down. */
+#about .pn-about-name {
+    font-family: var(--pn-font-display);
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -.015em;
+    line-height: 1.1;
+    margin: 0;
+    /* The About panel sits on the crimson field, which sets `color: white`.
+       Heading tokens must not override that here, or the title lands as
+       near-black on crimson at roughly 2.4:1. */
+    color: inherit;
+}
+
+/* ---------------------------------------------------------------- About
+   Upstream spaces this panel with margin accidents rather than rhythm: the
+   tagline and the action button sit flush against the wordmark, the credit
+   wraps with its separator stranded at the end of a line, and the icon row
+   carries a -16px bottom margin that lets 40px icons crash into the line
+   above. The panel is also painted on the crimson field, so the quiet
+   ink-3/ink-2 credit tokens drop to roughly 3:1 and 1.5:1 there.
+   Rebuilt with explicit spacing and on-field text colours. */
+#about {
+    --pn-on-accent: rgba(255, 255, 255, .94);
+    --pn-on-accent-2: rgba(255, 255, 255, .74);
+    --pn-on-accent-line: rgba(255, 255, 255, .34);
+}
+
+#about section {
+    width: 100%;
+    max-width: 560px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* The default mark tile is a solid accent square, which lands on the accent
+   field and disappears (crimson on crimson in light, pink on pink in dark).
+   A translucent glass tile reads on the field in both themes. */
+#about .pn-about-mark {
+    margin: 0 auto 18px;
+    background: rgba(255, 255, 255, .16);
+    border: 1px solid rgba(255, 255, 255, .38);
+    color: #fff;
+    box-shadow: 0 12px 28px -20px rgba(0, 0, 0, .8);
+}
+
+#about .title-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 14px;
+}
+
+/* Upstream indents this child by 0.4em for a logo-beside-text lockup that no
+   longer exists; with the element stacked it just off-centres the tagline. */
+#about .title-wrapper > div { margin-left: 0; }
+
+#about .pn-about-tag {
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--pn-on-accent-2);
+}
+
+#about .pn-about-claim {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--pn-on-accent);
+    max-width: 44ch;
+    margin: 0 auto 22px;
+}
+
+#about a.pn-about-link { margin-bottom: 4px; }
+
+#about .pn-credit {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 20px;
+    max-width: none;
+    color: var(--pn-on-accent-2);
+}
+
+/* Colours for the credit when it sits on the accent field (see .pn-credit__item
+   for the wrapping fix, which applies everywhere). */
+#about .pn-credit__line { color: inherit; }
+
+#about .pn-credit a {
+    color: var(--pn-on-accent);
+    border-bottom-color: var(--pn-on-accent-line);
+}
+
+#about .pn-credit a:hover {
+    color: #fff;
+    border-bottom-color: #fff;
+}
+
+#about .pn-credit__sep { color: var(--pn-on-accent-line); }
+
+#about .pn-about-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 22px 0 0;
+}
+
+/* Upstream reserves/then cancels space with `margin: 8px 8px -16px`, which
+   lets the 40px buttons overshoot their own 32px row and collide with the
+   credit above. Real spacing instead. */
+#about .pn-about-links a.icon-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    border-radius: var(--pn-r-sm);
+    color: var(--pn-on-accent);
+    border: 1px solid transparent;
+    transition: background-color var(--pn-dur-feedback) var(--pn-ease-out),
+                border-color var(--pn-dur-feedback) var(--pn-ease-out);
+}
+
+#about .pn-about-links a.icon-button:hover {
+    background: rgba(255, 255, 255, .14);
+    border-color: var(--pn-on-accent-line);
+    color: #fff;
+}
+
+#about .pn-about-links a.icon-button:focus-visible {
+    box-shadow: 0 0 0 2px transparent, 0 0 0 4px #fff;
+}
+
+#about .pn-about-links a.icon-button::before { content: none; }
+
+@media (max-height: 560px) {
+    #about .pn-about-mark { display: none; }
+    #about .pn-about-claim { margin-bottom: 16px; }
+    #about .pn-about-links { margin-top: 16px; }
+}
+
+x-no-peers > div {
+    color: var(--pn-ink-2);
+    font-size: 15px;
+    max-width: 44ch;
+    margin: 0 auto;
+}
+
+x-instructions {
+    color: var(--pn-ink-2);
+    font-size: 14px;
+}
+
+/* ---------------------------------------------------------------------------
+   6. Footer + discovery
+   ------------------------------------------------------------------------ */
+footer { margin: 0 18px 18px; }
+
+footer .logo {
+    --icon-size: 56px;
+    color: var(--pn-accent);
+    margin-bottom: 10px;
+}
+
+/* Upstream lays this row out as inline text and compensates for the badge's
+   1rem transparent side borders with a -1rem negative margin on both the badge
+   and the pen. The brand layer re-declared `background` on the badge, and that
+   shorthand resets `background-clip` to `border-box` — so the badge's own fill
+   began painting across its transparent left border, which sits on top of the
+   trailing "as" of the label. Hence the overlap.
+   Re-laying the row out as flex and cancelling both sides of the hack removes
+   the cause instead of patching the symptom. */
+.known-as-wrapper {
+    font-size: 13px;
+    color: var(--pn-ink-2);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3px 8px;
+    min-height: 22px;
+}
+
+.known-as-wrapper > * { flex: 0 0 auto; }
+
+/* Specificity must beat upstream's `html:not([dir="rtl"]) #display-name`
+   (0,1,1,1), so both the html type selector and the wrapper class are used. */
+html:not([dir="rtl"]) .known-as-wrapper > #display-name,
+html[dir="rtl"] .known-as-wrapper > #display-name {
+    margin-left: 0;
+    margin-right: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    background-clip: border-box;
+    height: auto;
+    min-height: 20px;
+    margin-bottom: 0;
+    line-height: 1.45;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    max-width: min(24ch, 100%);
+}
+
+html:not([dir="rtl"]) .known-as-wrapper > .edit-pen,
+html[dir="rtl"] .known-as-wrapper > .edit-pen {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#display-name.badge {
+    background-color: var(--pn-surface-2);
+    color: var(--pn-ink);
+    border: var(--pn-hairline);
+    border-radius: var(--pn-r-sm);
+    padding: 3px 10px;
+    font-weight: 600;
+}
+
+.edit-pen { color: var(--pn-ink-3); }
+
+.discovery-wrapper {
+    margin-top: 10px;
+    gap: 6px;
+    padding: 10px 14px;
+    border-radius: var(--pn-r-md);
+    background: var(--pn-surface);
+    border: var(--pn-hairline);
+    box-shadow: var(--pn-shadow-1);
+    font-size: 12px;
+    color: var(--pn-ink-3);
+}
+
+.badge {
+    border-radius: var(--pn-r-pill);
+    padding: 4px 11px;
+    background: var(--pn-surface-2);
+    color: var(--pn-ink-2);
+    font-size: 11.5px;
+    font-weight: 600;
+    border: var(--pn-hairline);
+}
+
+.badge-room-ip { background: var(--pn-blue-soft); color: var(--pn-blue); border-color: transparent; }
+.badge-room-secret { background: var(--pn-ok-soft); color: var(--pn-ok); border-color: transparent; }
+.badge-room-public-id { background: var(--pn-warn-soft); color: var(--pn-warn); border-color: transparent; }
+
+.highlight { background: var(--pn-surface-2); border-radius: var(--pn-r-xs); padding: 1px 5px; }
+.highlight-room-ip { background: var(--pn-blue-soft); color: var(--pn-blue); }
+.highlight-room-secret { background: var(--pn-ok-soft); color: var(--pn-ok); }
+.highlight-room-public-id { background: var(--pn-warn-soft); color: var(--pn-warn); }
+
+/* ---------------------------------------------------------------------------
+   7. Buttons
+   ------------------------------------------------------------------------ */
+.btn {
+    font-family: var(--pn-font-ui);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .005em;
+    text-transform: none;
+    line-height: 20px;
+    padding: 10px 18px;
+    border-radius: var(--pn-r-sm);
+    background: var(--pn-surface);
+    color: var(--pn-ink);
+    border: 1px solid var(--pn-line-strong);
+    box-shadow: none;
+    transition: transform var(--pn-dur-feedback) var(--pn-ease-out),
+                background-color var(--pn-dur-feedback) var(--pn-ease-out),
+                border-color var(--pn-dur-feedback) var(--pn-ease-out);
+}
+
+.btn:hover {
+    background: var(--pn-surface-2);
+    transform: translateY(-1px);
+}
+
+.btn:active { transform: translateY(0) scale(.99); }
+
+/* Primary action — the one place the accent fills a surface. */
+.btn.btn-primary,
+.btn.primary,
+.btn.blue,
+.btn:not(.btn-dark):not(.btn-ghost):not(.btn-small):not(.btn-rounded):not([class*="btn-light"]) {
+    background: var(--pn-accent);
+    border-color: var(--pn-accent);
+    color: #fff;
+}
+
+.btn.btn-primary:hover,
+.btn.primary:hover,
+.btn.blue:hover {
+    background: var(--pn-accent-hover);
+    border-color: var(--pn-accent-hover);
+}
+
+.btn-small { font-size: 12.5px; padding: 6px 13px; }
+.btn-rounded { border-radius: var(--pn-r-pill); }
+
+.btn-dark {
+    background: var(--pn-ink);
+    border-color: var(--pn-ink);
+    color: #fff;
+}
+
+.btn.btn-disabled,
+.btn[disabled] {
+    background: var(--pn-surface-2);
+    color: var(--pn-ink-3);
+    border-color: var(--pn-line);
+    pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------
+   8. Dialogs
+   ------------------------------------------------------------------------ */
+x-paper {
+    background: var(--pn-surface);
+    color: var(--pn-ink);
+    border-radius: var(--pn-r-lg);
+    border: var(--pn-hairline);
+    box-shadow: var(--pn-shadow-3);
+    overflow: hidden;
+}
+
+x-paper.shadow-2 { box-shadow: var(--pn-shadow-3); }
+
+x-background {
+    background: rgba(9, 12, 20, .5);
+}
+
+body.dark-theme x-background {
+    background: rgba(0, 0, 0, .66);
+}
+
+.dialog-title {
+    font-family: var(--pn-font-display);
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: -.01em;
+}
+
+.language-buttons .btn { font-weight: 500; text-align: left; }
+.language-buttons hr { background: var(--pn-line); border: 0; height: 1px; }
+
+/* ------------------------------------------------------- language list
+   Upstream marks every language label with `z-index: -1` so a click can never
+   land on a span instead of its button. That only works while the button has no
+   background: the rows are plain `.btn`s, which this layer fills with the
+   opaque accent colour, and `.btn` is `position: relative; z-index: auto` — not
+   a stacking context — so a negative-z-index child paints *behind* the parent's
+   own background and every language name disappears, in both themes.
+   The rows are re-indexed (the click target is guaranteed instead with
+   `pointer-events: none`, which is what the original trick was really for) and
+   restyled as a list rather than 37 full-width accent bars. */
+#language-select-dialog .language-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 8px 10px;
+    max-height: min(62vh, 520px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+}
+
+#language-select-dialog .language-buttons > .btn {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 0 2px;
+    width: 100%;
+    min-height: 46px;
+    margin: 0;
+    padding: 12px 42px 12px 12px;
+    background: transparent;
+    border: 0;
+    border-bottom: var(--pn-hairline);
+    border-radius: 0;
+    box-shadow: none;
+    color: var(--pn-ink);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: 0;
+    text-transform: none;
+    text-align: left;
+    transform: none;
+}
+
+#language-select-dialog .language-buttons > .btn:first-of-type { border-top: var(--pn-hairline); }
+#language-select-dialog .language-buttons > .btn:last-of-type { border-bottom: 0; }
+
+#language-select-dialog .language-buttons > .btn:hover {
+    background: var(--pn-surface-2);
+    border-color: var(--pn-line);
+    transform: none;
+}
+
+#language-select-dialog .language-buttons > .btn:active {
+    background: var(--pn-surface-3);
+    transform: none;
+}
+
+/* The ripple overlay would double-up with the row fill. */
+#language-select-dialog .language-buttons > .btn::before { content: none; }
+
+#language-select-dialog .language-buttons > .btn > span {
+    position: static;
+    z-index: auto;
+    pointer-events: none;
+    color: inherit;
+}
+
+#language-select-dialog .language-buttons > .current {
+    background: var(--pn-accent-soft);
+    color: var(--pn-accent);
+    font-weight: 600;
+}
+
+#language-select-dialog .language-buttons > .current:after {
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    color: var(--pn-accent);
+    font-size: 17px;
+    z-index: 1;
+}
+
+/* ------------------------------------------------------- theme picker
+   Upstream collapses the two unselected options to `height: 0; opacity: 0` and
+   paints a `::before` halo that only exists on hover. A touch device keeps
+   `:hover` stuck after a tap, so the halo stays behind the buttons (a pink
+   disc in light, magenta in dark) while the collapsed options re-expand into
+   it — which is why the light and dark buttons overlap.
+   Replaced with a fixed segmented control that renders identically on mouse,
+   touch and keyboard, and never depends on hover. */
+#theme-wrapper {
+    position: relative;
+    display: inline-flex;
+    /* Pinned to the same box height as the icon buttons so `align-self: center`
+       lands on exactly the same pixel row as its siblings. */
+    height: 40px;
+    box-sizing: border-box;
+    /* Upstream `header > *` makes every header child a column flex container
+       aligned to flex-start. Both have to be undone here, or the three options
+       stack into two rows instead of one segmented control. */
+    flex-direction: row;
+    align-self: center;
+    align-items: center;
+    gap: 2px;
+    padding: 3px;
+    border-radius: var(--pn-r-sm);
+    background: var(--pn-surface-2);
+    border: var(--pn-hairline);
+}
+
+/* The halo, removed in every state and on every pointer type. */
+#theme-wrapper::before,
+#theme-wrapper:hover::before,
+#theme-wrapper:before,
+#theme-wrapper:hover:before {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+    height: 0 !important;
+}
+
+#theme-wrapper > div {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+}
+
+/* Must outweigh upstream's `#theme-wrapper:not(:hover) .icon-button:not(.selected)`
+   (1,3,0) and the coarse-pointer variant, which between them hide the inactive
+   options behind a hover-only reveal. */
+#theme-wrapper .icon-button,
+#theme-wrapper:not(:hover) .icon-button:not(.selected),
+#theme-wrapper:hover .icon-button:not(.selected) {
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    opacity: 1;
+    pointer-events: auto;
+    border-radius: 7px;
+    --icon-size: 17px;
+}
+
+#theme-wrapper:not(:hover) .icon-button.selected,
+#theme-wrapper:hover .icon-button.selected {
+    background: var(--pn-accent-soft);
+    color: var(--pn-accent);
+}
+
+#theme-wrapper .icon-button::before { content: none; }
+
+@media (max-width: 400px) {
+    #theme-wrapper .icon-button,
+    #theme-wrapper:not(:hover) .icon-button:not(.selected),
+    #theme-wrapper:hover .icon-button:not(.selected) {
+        width: 27px;
+        min-width: 27px;
+        height: 27px;
+        --icon-size: 15px;
+    }
+}
+
+/* Pair / room codes read as data, so they get the mono stack. */
+.pn-code,
+x-peer .type-ip {
+    font-family: var(--pn-font-mono);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: .12em;
+}
+
+/* ---------------------------------------------------------------------------
+   9. Brand motion graphic (ident) — animated SVG, transform/opacity only
+   ------------------------------------------------------------------------ */
+.pn-ident {
+    --pn-ident-size: clamp(150px, 26vw, 224px);
+    width: var(--pn-ident-size);
+    height: var(--pn-ident-size);
+    position: relative;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 14px;
+}
+
+.pn-ident__ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid var(--pn-line-strong);
+    opacity: .7;
+    transform: scale(.62);
+}
+
+.pn-ident__svg { width: 100%; height: 100%; display: block; overflow: visible; }
+
+/* Beam: the transfer itself. Animates scaleX only. */
+.pn-ident__beam {
+    transform-box: fill-box;
+    transform-origin: left center;
+    transform: scaleX(0);
+    stroke: var(--pn-accent);
+    stroke-linecap: round;
+}
+
+/* Node: devices lighting up in sequence. */
+.pn-ident__node { opacity: .35; transition: opacity 240ms var(--pn-ease-out); }
+.pn-ident__node.is-on { opacity: 1; }
+
+/* Packet: travels the beam — translate only (SMIL-safe, compositor friendly). */
+.pn-ident__packet { fill: var(--pn-accent); }
+
+.pn-ident__label {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--pn-font-mono);
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--pn-ink-3);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Screen-reader-only text. Used by the cut-reveal, which animates split
+   characters and would otherwise read as gibberish. */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Developer credit — About panel, app footer, brand page footer. */
+.pn-credit {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6px 8px;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--pn-ink-3);
+    margin-top: 14px;
+    max-width: 46ch;
+    text-align: center;
+}
+
+.pn-credit--left { justify-content: flex-start; text-align: left; margin-top: 18px; }
+
+.pn-credit a {
+    color: var(--pn-ink-2);
+    text-decoration: none;
+    border-bottom: 1px solid var(--pn-line-strong);
+    padding-bottom: 1px;
+}
+
+.pn-credit a:hover { color: var(--pn-accent); border-bottom-color: var(--pn-accent); }
+
+.pn-credit__sep { color: var(--pn-line-strong); }
+
+/* Separator and its link travel together, so a wrapped line can never open or
+   end on a stranded "·". */
+.pn-credit__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.pn-credit__note {
+    font-size: 12px;
+    color: var(--pn-ink-3);
+    margin: 8px 0 0;
+    max-width: 46ch;
+}
+
+/* Persistent, quiet credit in the app shell. */
+.pn-footcredit {
+    font-size: 11.5px;
+    color: var(--pn-ink-3);
+    text-align: center;
+    margin: 0 0 14px;
+    padding: 0 16px;
+}
+
+.pn-footcredit a {
+    color: var(--pn-ink-3);
+    text-decoration: none;
+    border-bottom: 1px solid var(--pn-line);
+}
+
+.pn-footcredit a:hover { color: var(--pn-accent); border-bottom-color: var(--pn-accent); }
+
+/* About page brand mark */
+.pn-about-mark {
+    width: 72px;
+    height: 72px;
+    border-radius: var(--pn-r-lg);
+    display: grid;
+    place-items: center;
+    background: var(--pn-accent);
+    border: var(--pn-hairline);
+    color: #fff;
+    margin: 0 auto 14px;
+}
+
+.pn-about-mark svg { width: 40px; height: 40px; display: block; }
+
+.pn-ident { color: var(--pn-ink-2); }
+
+/* Signalling notice — shown only after repeated socket failures, so it never
+   appears on an instance that has a working signalling server. */
+.pn-notice {
+    position: fixed;
+    left: 50%;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    transform: translateX(-50%);
+    z-index: var(--pn-z-toast);
+    width: min(520px, calc(100% - 24px));
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: var(--pn-surface);
+    border: var(--pn-hairline);
+    border-left: 3px solid var(--pn-warn);
+    border-radius: var(--pn-r-md);
+    box-shadow: var(--pn-shadow-3);
+    padding: 14px 16px;
+    animation: pn-rise var(--pn-dur-enter) var(--pn-ease-out) both;
+}
+
+.pn-notice__body { font-size: 13px; line-height: 1.6; color: var(--pn-ink-2); }
+.pn-notice__body strong { display: block; color: var(--pn-ink); font-size: 13.5px; margin-bottom: 3px; }
+
+.pn-notice a { color: var(--pn-accent); }
+
+.pn-notice__close {
+    margin-left: auto;
+    flex: none;
+    background: none;
+    border: 0;
+    color: var(--pn-ink-3);
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    padding: 2px 4px;
+}
+
+/* ---------------------------------------------------------------------------
+   10. Micro-components added by PairNepal
+   ------------------------------------------------------------------------ */
+/* Sound toggle — an icon button with an accessible pressed state. */
+.pn-sound[aria-pressed="false"] .pn-sound__waves { display: none; }
+.pn-sound[aria-pressed="true"] .pn-sound__muted { display: none; }
+
+/* Vertical-cut text reveal (technique ported from 21st.dev "Vertical Cut Reveal").
+   The wrapper clips; the inner span travels from 100% to 0. */
+.pn-cut {
+    display: inline-flex;
+    overflow: hidden;
+    vertical-align: bottom;
+}
+
+.pn-cut > span {
+    display: inline-block;
+    transform: translateY(100%);
+    will-change: transform;
+}
+
+.pn-cut.is-in > span {
+    transform: translateY(0);
+    transition: transform 620ms var(--pn-ease-out);
+    transition-delay: var(--pn-cut-delay, 0ms);
+}
+
+/* Magnetic element (technique ported from 21st.dev "Magnetic" by ibelick).
+   JS writes --pn-mx / --pn-my; the spring is expressed as a short transition. */
+.pn-magnetic {
+    display: inline-block;
+    transform: translate3d(var(--pn-mx, 0px), var(--pn-my, 0px), 0);
+    transition: transform 340ms cubic-bezier(.22, .61, .36, 1);
+}
+
+.pn-magnetic:active { transition-duration: 120ms; }
+
+/* Scroll-reveal primitive: opt-in, transform+opacity only, no-JS safe
+   (elements are visible unless JS adds .pn-reveal-ready). */
+.pn-reveal-ready {
+    opacity: 0;
+    transform: translateY(14px);
+}
+
+.pn-reveal-ready.is-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity var(--pn-dur-enter) var(--pn-ease-out),
+                transform var(--pn-dur-enter) var(--pn-ease-out);
+    transition-delay: var(--pn-reveal-delay, 0ms);
+}
+
+/* Skeleton for loading states. Single sweep, small surface. */
+.pn-skeleton {
+    background-image: linear-gradient(90deg,
+        var(--pn-surface-2) 0%, var(--pn-surface-3) 50%, var(--pn-surface-2) 100%);
+    background-size: 220% 100%;
+    animation: pn-sweep 1.4s linear infinite;
+    border-radius: var(--pn-r-sm);
+}
+
+/* ---------------------------------------------------------------------------
+   11. Keyframes — declared once, all transform/opacity (or small-surface paint)
+   ------------------------------------------------------------------------ */
+@keyframes pn-presence {
+    0%   { opacity: .55; transform: scale(1); }
+    60%  { opacity: 0;   transform: scale(1.16); }
+    100% { opacity: 0;   transform: scale(1.16); }
+}
+
+@keyframes pn-sweep {
+    0%   { background-position: 120% 0; }
+    100% { background-position: -120% 0; }
+}
+
+@keyframes pn-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes pn-rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------------------------------------------------------------------
+   12. Reduced motion — every non-essential animation resolves to its end state
+   ------------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    x-peer:not(.ws-peer) .icon-wrapper .circle { animation: none; opacity: .45; transform: none; }
+
+    .pn-cut > span { transform: none; }
+    .pn-reveal-ready { opacity: 1; transform: none; }
+    .pn-magnetic { transform: none !important; }
+    .pn-skeleton { animation: none; background: var(--pn-surface-2); }
+}
+
+/* ---------------------------------------------------------------------------
+   13. Small screens
+   ------------------------------------------------------------------------ */
+/* Upstream pins the header to a single 64px row and reveals wrapped controls
+   through the expand chevron. Adding the brand lockup pushes the brand itself
+   onto that wrapped row, where `overflow: hidden` clips it away. On small
+   screens the header is allowed to grow instead, so every control stays
+   visible and tappable. */
+@media (max-width: 760px) {
+    /* Upstream clips the wrapped row with `header.overflow-hidden` and pins the
+       height with `header:not(.overflow-expanded)` — both outrank a bare
+       `header` selector, so the same specificity is required here. */
+    header,
+    header.overflow-hidden {
+        overflow: visible;
+        align-items: center;
+    }
+
+    header:not(.overflow-expanded) {
+        height: auto;
+        min-height: 64px;
+    }
+}
+
+@media (max-width: 620px) {
+    header { padding: 12px 12px; }
+    #center { padding: 4px 10px 0; }
+    footer { margin: 0 12px 12px; }
+    x-peer .icon-wrapper { width: 84px; height: 84px; }
+    x-peer .name { max-width: 120px; font-size: 13px; }
+    x-peer .progress { width: 84px; }
+}
+
+/* ===========================================================================
+   9. Homepage editorial tail
+   ---------------------------------------------------------------------------
+   The app is pinned to exactly one viewport so it behaves like an application
+   rather than a document. Everything below it is what a crawler actually has
+   to read, so the document is allowed to scroll from here down. The shell
+   supplies the same definite height <body> used to, which is why the app's
+   own internal layout is unaffected by the change.
+   ========================================================================= */
+
+/* The root must not be a flex container. WebKit mis-sizes a flex root and the
+   document then refuses to scroll — which is why this page scrolled on a phone
+   but not on a laptop. The flex context the app needs is supplied by
+   .pn-app-shell instead, so <header> and <#center> lay out exactly as before. */
+html {
+    display: block;
+    height: auto;
+    min-height: 100%;
+    /* `width: 100vw` upstream includes the scrollbar, which would introduce a
+       horizontal overflow the moment this page can scroll. */
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+body {
+    display: block;
+    height: auto;
+    min-height: 0;
+    width: 100%;
+    overflow: visible;
+}
+
+.pn-app-shell {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 520px;
+    overflow: hidden;
+}
+
+.pn-tail {
+    background: var(--pn-canvas);
+    border-top: var(--pn-hairline);
+    padding: 76px 24px 100px;
+}
+
+.pn-tail__wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    color: var(--pn-ink-2);
+    font-size: 16px;
+    line-height: 1.65;
+}
+
+.pn-tail__kicker {
+    font-family: var(--pn-font-mono);
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--pn-accent);
+    margin: 0 0 14px;
+}
+
+.pn-tail h2 {
+    font-family: var(--pn-font-display);
+    font-size: clamp(26px, 3.4vw, 34px);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -.015em;
+    color: var(--pn-ink);
+    margin: 56px 0 14px;
+    max-width: 24ch;
+    text-wrap: balance;
+}
+
+.pn-tail h2:first-of-type { margin-top: 0; }
+
+.pn-tail h3 {
+    font-family: var(--pn-font-ui);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--pn-ink);
+    margin: 0 0 6px;
+}
+
+.pn-tail p { margin: 0 0 16px; max-width: 68ch; }
+
+.pn-tail__lede {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.pn-tail a {
+    color: var(--pn-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: rgba(193, 18, 53, .34);
+    transition: text-decoration-color var(--pn-dur-feedback) var(--pn-ease-out);
+}
+
+.pn-tail a:hover,
+.pn-tail a:focus-visible { text-decoration-color: var(--pn-accent); }
+
+/* --- key numbers ---------------------------------------------------------- */
+.pn-tail__stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--pn-line);
+    border: var(--pn-hairline);
+    border-radius: var(--pn-r-md);
+    overflow: hidden;
+    margin: 30px 0 10px;
+}
+
+.pn-tail__stats > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: var(--pn-surface);
+    padding: 18px 16px;
+}
+
+.pn-tail__stats b {
+    font-family: var(--pn-font-display);
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--pn-accent);
+    font-variant-numeric: tabular-nums;
+}
+
+.pn-tail__stats span {
+    font-size: 12.5px;
+    line-height: 1.35;
+    color: var(--pn-ink-3);
+}
+
+/* --- three steps ---------------------------------------------------------- */
+.pn-tail__steps {
+    list-style: none;
+    margin: 4px 0 0;
+    padding: 0;
+    counter-reset: pn-step;
+}
+
+.pn-tail__steps li {
+    position: relative;
+    padding: 0 0 28px 62px;
+    counter-increment: pn-step;
+}
+
+.pn-tail__steps li::before {
+    content: counter(pn-step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--pn-accent-soft);
+    color: var(--pn-accent);
+    font-family: var(--pn-font-mono);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* the connecting rule between the steps */
+.pn-tail__steps li::after {
+    content: "";
+    position: absolute;
+    left: 19px;
+    top: 46px;
+    bottom: 4px;
+    width: 1px;
+    background: var(--pn-line);
+}
+
+.pn-tail__steps li:last-child { padding-bottom: 0; }
+.pn-tail__steps li:last-child::after { display: none; }
+
+.pn-tail__list { margin: 0 0 16px; padding-left: 20px; }
+.pn-tail__list li { margin-bottom: 8px; }
+.pn-tail__list b { color: var(--pn-ink); }
+
+/* --- comparison -----------------------------------------------------------
+   Five columns cannot fit a 390px screen. The table scrolls inside its own
+   container so the last column stays reachable, instead of being clipped by
+   the page's `overflow-x: hidden`. */
+.pn-tail__scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 20px 0 10px;
+}
+
+.pn-tail__scroll .pn-tail__table { margin: 0; }
+
+.pn-tail__table {
+    width: 100%;
+    min-width: 520px;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 20px 0 10px;
+}
+
+.pn-tail__table th,
+.pn-tail__table td {
+    text-align: left;
+    padding: 11px 12px;
+    border-bottom: var(--pn-hairline);
+    vertical-align: top;
+}
+
+.pn-tail__table thead th {
+    font-family: var(--pn-font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--pn-ink-3);
+    border-bottom: 1px solid var(--pn-line);
+}
+
+.pn-tail__table tbody th {
+    font-weight: 600;
+    color: var(--pn-ink);
+}
+
+.pn-tail__table .is-hero td,
+.pn-tail__table .is-hero th {
+    background: var(--pn-accent-soft);
+    color: var(--pn-ink);
+}
+
+/* --- questions ------------------------------------------------------------ */
+.pn-tail__faq {
+    border-bottom: var(--pn-hairline);
+    padding: 15px 0;
+}
+
+.pn-tail__faq summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    cursor: pointer;
+    list-style: none;
+    font-size: 16.5px;
+    font-weight: 600;
+    color: var(--pn-ink);
+}
+
+.pn-tail__faq summary::-webkit-details-marker { display: none; }
+
+.pn-tail__faq summary::after {
+    content: "+";
+    flex: none;
+    font-family: var(--pn-font-mono);
+    font-size: 20px;
+    line-height: 1;
+    color: var(--pn-accent);
+    transition: transform var(--pn-dur-feedback) var(--pn-ease-out);
+}
+
+.pn-tail__faq[open] summary::after {
+    content: "\2013";
+}
+
+.pn-tail__faq p { margin: 14px 0 2px; }
+
+.pn-tail__close {
+    margin: 52px 0 0;
+    padding-top: 24px;
+    border-top: var(--pn-hairline);
+    font-size: 15px;
+    color: var(--pn-ink-3);
+}
+
+@media (max-width: 700px) {
+    .pn-tail { padding: 52px 18px 76px; }
+    .pn-tail__stats { grid-template-columns: repeat(2, 1fr); }
+    .pn-tail__table { font-size: 13px; }
+    .pn-tail__table th,
+    .pn-tail__table td { padding: 9px 8px; }
+    .pn-tail__steps li { padding-left: 52px; }
+    .pn-tail__close { font-size: 14px; }
+}
+
+/* =============================================================================
+   13. Boot loader
+   The app's own chrome carries `opacity: 0` until scripts/main.js has awaited
+   the signalling socket, so before this existed the first painted frame was an
+   empty canvas. Styled entirely from this sheet, which is now linked in <head>,
+   so it is on screen from the first frame.
+   ========================================================================== */
+
+#pn-boot {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: grid;
+    place-items: center;
+    background: rgb(var(--bg-color));
+    transition: opacity 280ms var(--pn-ease-out),
+                visibility 0s linear 280ms;
+}
+
+#pn-boot__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+#pn-boot__mark {
+    width: 54px;
+    height: 54px;
+    color: var(--pn-accent);
+    animation: pn-boot-pulse 1.7s var(--pn-ease-in-out) infinite;
+}
+
+#pn-boot__mark svg { display: block; width: 100%; height: 100%; }
+
+#pn-boot__label {
+    font-family: var(--pn-font-display);
+    font-size: 21px;
+    letter-spacing: -.015em;
+    color: var(--pn-ink);
+}
+
+.pn-boot__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@keyframes pn-boot-pulse {
+    0%, 100% { opacity: .5; transform: scale(.94); }
+    50%      { opacity: 1;   transform: scale(1); }
+}
+
+body.pn-ready #pn-boot {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #pn-boot__mark { animation: none; opacity: .85; transform: none; }
+}
+
+/* =============================================================================
+   14. Header alignment
+   Upstream `header > *` pins every child to `flex-start`, and
+   `header > * { flex-direction: column }` also turns the brand lockup into a
+   stacked column while the brand page renders it as a row. The two disagreeing
+   cross-axis alignments are what left the theme switcher sitting 23px below the
+   icon buttons on a laptop: the brand was 86px tall, so it defined the flex
+   line, the icons stayed at its top edge, and the centre-aligned theme control
+   was centred on 86px instead of on the icons.
+   ========================================================================== */
+
+header > * { align-self: center; }
+
+.pn-brand {
+    /* `header > *` makes this a column; the lockup is a row everywhere else. */
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    flex: 0 0 auto;
+}
+
+/* =============================================================================
+   15. About panel: viewport-locked, never scrollable
+   `#about` is `.full` (position: absolute), so with the document now scrollable
+   the panel anchored to the *document* rather than the viewport and could be
+   scrolled away from. Pinned to the viewport while open, and the page behind it
+   is locked so the panel cannot be scrolled either.
+   ========================================================================== */
+
+#about {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+}
+
+html:has(#about:target),
+body:has(#about:target) {
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
+/* Short viewports: compact the panel rather than let it overflow, since it is
+   deliberately not scrollable. */
+@media (max-height: 660px) {
+    #about .pn-about-mark { width: 56px; height: 56px; margin-bottom: 12px; }
+    #about .pn-about-mark svg { width: 28px; height: 28px; }
+    #about .pn-about-name { font-size: 26px; }
+    #about .title-wrapper { margin-bottom: 10px; }
+    #about .pn-about-claim { margin-bottom: 15px; }
+    #about .pn-credit { margin-top: 14px; }
+    #about .pn-about-links { margin-top: 15px; }
+}
+
+@media (max-height: 520px) {
+    #about .pn-about-mark { display: none; }
+    #about .pn-about-claim { font-size: 14px; }
+    #about .pn-about-links { margin-top: 12px; }
+}
+
+/* =============================================================================
+   16. No-JS hardening
+   ========================================================================== */
+
+/* The no-JS fallback heading was demoted from <h1> so every rendering context
+   has exactly one H1; it needs its own size back. */
+x-noscript h2 {
+    font-family: var(--pn-font-display);
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -.015em;
+    line-height: 1.1;
+    color: inherit;
+    margin: 0 0 8px;
+}
+
+x-noscript p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: inherit;
+    opacity: .85;
+    margin: 0;
+}
+
+/* The boot loader must never be able to cover the page for a client that does
+   not run scripts — the <noscript> rule in index.html hides it outright, and
+   this release guarantees the same outcome for a client whose scripts are
+   present but stalled (blocked main thread, failed handshake). */
+@keyframes pn-boot-release {
+    to { opacity: 0; visibility: hidden; pointer-events: none; }
+}
+
+#pn-boot {
+    animation: pn-boot-release 0s linear 4s forwards;
+}
